@@ -23,6 +23,26 @@
   background-color: #0E0E0E;
 }
 
+.text-primary {
+  color: #4F5955;
+}
+
+.text-secondary {
+  color: #D9C3A9;
+}
+
+.text-body {
+  color: #535656;
+}
+
+.text-black {
+  color: #0E0E0E;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
 .container {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
@@ -70,6 +90,14 @@ img, svg {
   vertical-align: middle;
 }
 
+.image-div {
+  overflow: hidden;
+}
+.image-div img {
+  height: auto;
+  max-width: 100%;
+}
+
 body {
   transition-duration: 0.5s;
   font-family: "Poppins", sans-serif;
@@ -92,7 +120,7 @@ body {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 70px;
   font-weight: 700;
 }
 
@@ -113,11 +141,6 @@ h4 {
 
 h5 {
   font-size: 22px;
-  font-weight: 700;
-}
-
-h6 {
-  font-size: 18px;
   font-weight: 700;
 }
 
@@ -439,6 +462,20 @@ section .background-div {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .hidden-tablet {
+    transition-duration: 0.5s;
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hidden-mobile {
+    transition-duration: 0.5s;
+    display: none;
+  }
 }
 
 .umb-block-grid__layout-container {

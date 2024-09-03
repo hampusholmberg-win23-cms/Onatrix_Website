@@ -34,6 +34,23 @@ $outline-color:     #DABA93;
     background-color: $black;
 }
 
+//TEXT-CLASSES
+.text-primary {
+    color: $primary;
+}
+.text-secondary {
+    color: $sub-color-3;
+}
+.text-body {
+    color: $body-text-color;
+}
+.text-black {
+    color: $black;
+}
+.text-white {
+    color: $white;
+}
+
 
 $danger:            #EF4444;
 $success:           #22C55E;

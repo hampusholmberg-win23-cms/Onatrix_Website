@@ -4,9 +4,20 @@
 
 @{
     var paragraphContent = Model.Content.Value<string>("paragraphContent");
+    var textAlign = Model.Content.Value<string>("textAlign");
+    var maxWidthValue = Model.Content.Value<int>("maxWidth");
+    var maxWidth = maxWidthValue.ToString() + "px";
+
 }
 
 @if (!string.IsNullOrEmpty(paragraphContent))
 {
-    <p>@paragraphContent</p>
+    if (maxWidthValue == 0)
+    {
+        <p style="text-align: @textAlign;">@paragraphContent</p>
+    }
+    else
+    {
+        <p style="text-align: @textAlign; max-width: @maxWidth;">@paragraphContent</p>
+    }
 }

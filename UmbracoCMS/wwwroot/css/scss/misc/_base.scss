@@ -7,6 +7,15 @@ img, svg {
     vertical-align: middle;
 }
 
+.image-div {
+    overflow: hidden;
+
+    img {
+        height: auto;
+        max-width: 100%;
+    }
+}
+
 body {
     transition-duration: .5s;
     font-family: "Poppins", sans-serif;

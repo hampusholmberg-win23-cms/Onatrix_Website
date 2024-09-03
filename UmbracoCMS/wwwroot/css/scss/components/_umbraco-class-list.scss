@@ -24,7 +24,16 @@ section {
     flex-direction: column;
 }
 
-
+.hidden-tablet {
+    @include tablet {
+        display: none;
+    }
+}
+.hidden-mobile {
+    @include mobile {
+        display: none;
+    }
+}
 
 
 

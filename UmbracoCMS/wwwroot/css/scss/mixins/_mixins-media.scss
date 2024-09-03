@@ -1,3 +1,11 @@
+@mixin mobile {
+    @media (max-width: 767px) {
+        transition-duration: .5s;
+
+        @content
+    }
+}
+
 @mixin tablet {
     @media (min-width: 768px) {
         transition-duration: .5s;
