@@ -1,0 +1,45 @@
+$transparent:        transparent;
+$white:             #ffffff;
+$bg-gray:           #f7f7f7;
+$form-gray:         #EBEBEB;
+$main-color:        #4F5955;
+$primary:           #4F5955;
+$main-color-2:      #606966;
+$sub-color-1:       #F2EDDC;
+$sub-color-2:       #000000;
+$sub-color-3:       #D9C3A9;
+$note-color-1:      #9C9EA6;
+$body-text-color:   #535656;
+$black:             #0E0E0E;
+$outline-color:     #DABA93;
+
+
+//BACKGROUND CLASSES
+.bg-gray {
+    background-color: $bg-gray;
+}
+.bg-white {
+    background-color: $white;
+}
+.bg-primary {
+    background-color: $primary;
+}
+.bg-accent {
+    background-color: $sub-color-1;
+}
+.bg-secondary {
+    background-color: $sub-color-3;
+}
+.bg-black {
+    background-color: $black;
+}
+
+
+$danger:            #EF4444;
+$success:           #22C55E;
+$warning:           #FFBA08;
+
+
+//opacity
+
+$main-color-transparent:        rgb(79, 89, 85, 0.6);

@@ -1,0 +1,31 @@
+
+.services-grid {
+    display: flex;
+    justify-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+
+    @include tablet {
+        row-gap: 1rem;
+        column-gap: 1rem;
+    }
+
+    @include desktop {
+        row-gap: 2rem;
+        column-gap: 2rem;
+    }
+}
+
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @include tablet {
+    }
+
+    @include desktop {
+    }
+}

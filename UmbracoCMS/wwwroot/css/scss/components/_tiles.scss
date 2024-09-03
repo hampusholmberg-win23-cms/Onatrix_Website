@@ -1,0 +1,138 @@
+.service-tile {
+    text-align: start;
+    border: 1px solid $sub-color-1;
+    transition-duration: .25s;
+    display: block;
+    max-width: 250px;
+    background-color: $white;
+
+    @include tablet {
+        max-width: 340px;
+    }
+
+    &:hover {
+        @include shadow-l;
+        transition-duration: .25s;
+        text-decoration: underline;
+        background-color: $main-color;
+        color: $sub-color-1;
+
+        .service-tile-body {
+            p {
+                color: $sub-color-1;
+            }
+        }
+    }
+
+    .service-tile-header {
+        @include flex-start-center;
+        padding: 0 2rem;
+        height: 80px;
+
+        h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+        }
+    }
+
+    .service-tile-image {
+        width: 100%;
+        height: 180px;
+        overflow: hidden;
+        @include flex-center-center;
+
+        @include tablet {
+            height: 220px;
+        }
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .service-tile-body {
+        height: 120px;
+        width: 100%;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        @include flex-center-center;
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+        }
+    }
+}
+
+
+
+.project-tile {
+    position: relative;
+    min-height: 350px;
+    min-width: 350px;
+    overflow: hidden;
+
+    @include tablet {
+        height: 470px;
+        width: 470px;
+    }
+
+    .background-image {
+        @include flex-start-end;
+        background-size: cover;
+        background-position: center;
+        height: 100%;
+        width: 100%;
+        transition: transform 0.5s ease;
+    }
+
+    .project-tile-ribbon {
+        @include flex-center-start;
+        flex-direction: column;
+        background-color: $main-color-transparent;
+        width: 100%;
+        height: 92px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding-left: 1rem;
+        z-index: 2;
+
+        h6 {
+            color: $white;
+            padding: 0;
+            margin: 0;
+        }
+
+        p {
+            color: $white;
+            padding: 0;
+            margin: 0;
+        }
+
+        transition-duration: .25s;
+    }
+
+    &:hover {
+        .background-image {
+            transform: scale(1.2);
+        }
+
+        .project-tile-ribbon {
+            background-color: $main-color;
+            height: 141px;
+
+            h6 {
+                color: $sub-color-3;
+            }
+        }
+    }
+}

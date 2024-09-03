@@ -1,0 +1,37 @@
+.btn-primary, .btn-secondary {
+    @include btn;
+    font-size: 18px;
+    font-weight: 700;
+} 
+
+.btn-primary {
+    color: $sub-color-1;
+    background-color: $main-color;
+
+    &:hover {
+        color: $main-color;
+        background-color: $sub-color-1;
+    }
+}
+
+.btn-secondary {
+    color: $main-color;
+    background-color: $sub-color-1;
+    
+    &:hover {
+        color: $sub-color-1;
+        background-color: $main-color;
+    }
+}
+
+.btn-mobile {
+    color: $main-color;
+    background-color: transparent;
+    border: none;
+    font-size: 26px;
+
+    &:hover {
+        color: $sub-color-1;
+        background-color: $main-color;
+    }
+}

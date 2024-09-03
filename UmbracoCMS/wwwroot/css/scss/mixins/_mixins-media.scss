@@ -1,0 +1,15 @@
+@mixin tablet {
+    @media (min-width: 768px) {
+        transition-duration: .5s;
+
+        @content
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1400px) {
+        transition-duration: .5s;
+
+        @content
+    }
+}

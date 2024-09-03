@@ -1,0 +1,53 @@
+a {
+    cursor: pointer;
+    text-decoration: none;
+    color: $main-color;
+
+    &:hover {
+        transition-duration: .25s;
+        color: $sub-color-3;
+    }
+
+    &:active {
+        color: $sub-color-3;
+    }
+}
+
+.navlink {
+    transition-duration: .25s;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: $main-color;
+
+    &:hover {
+        transition-duration: .25s;
+        color: $sub-color-3;
+    }
+
+    &:active {
+        color: $sub-color-3;
+    }
+}
+
+.social-media-link {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    color: $white;
+    padding: 15px 20px;
+    border-left: 1px solid $main-color-2;
+    height: 100%;
+
+    &:nth-child(4) {
+        border-right: 1px solid $main-color-2;
+    }
+
+    &:hover {
+        color: $sub-color-3;
+    }
+
+    &:active {
+        color: $sub-color-3;
+    }
+}

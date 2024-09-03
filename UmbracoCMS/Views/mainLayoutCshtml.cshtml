@@ -1,0 +1,39 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+
+<html>
+
+	<head>
+		<title>@ViewBag.Title</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<script src="https://kit.fontawesome.com/ad71ca79ed.js" crossorigin="anonymous"></script>
+		<script src="~/scripts/main.js"></script>
+	</head>
+
+	<body class="wrapper">
+
+@* 
+		<header>
+			@await Html.PartialAsync("partials/headerSectionPartial.cshtml")
+		</header>
+ *@
+
+		<main>
+			@RenderBody()
+		</main>
+
+@* 
+		<footer>
+			@await Html.PartialAsync("partials/footerSectionPartial.cshtml")
+		</footer>
+ *@
+
+	</body>
+
+</html>

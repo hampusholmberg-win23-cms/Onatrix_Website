@@ -1,0 +1,25 @@
+
+@mixin input-standard {
+    border: 1px solid $form-gray;
+    border-radius: 5px;
+    padding: 1rem;
+    font-style: italic;
+    outline: none;
+
+    &:focus {
+        border: 1px solid $outline-color;
+    }
+}
+
+@mixin select-standard {
+    border: 1px solid $form-gray;
+    border-radius: 5px;
+    padding: 1rem;
+    font-family: poppins;
+    color: $body-text-color;
+    outline: none;
+
+    &:focus {
+        border: 1px solid $outline-color;
+    }
+}
