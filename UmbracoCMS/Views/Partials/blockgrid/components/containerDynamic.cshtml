@@ -2,4 +2,43 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
-@await Html.GetBlockGridItemAreasHtmlAsync(Model)
+@{
+    var center = Model.Content.Value<bool>("centerContentOnPage") ? "center" : "";
+
+    var spacingTopValue = Model.Content.Value<int>("addSpaceToTop");
+    var spacingTopClass = spacingTopValue.ToString() + "rem";
+
+    var spacingBottomValue = Model.Content.Value<int>("addSpaceToBottom");
+    var spacingBottomClass = spacingBottomValue.ToString() + "rem";
+
+    var spacingRightValue = Model.Content.Value<int>("addSpaceToRight");
+    var spacingRightClass = spacingRightValue.ToString() + "rem";
+
+    var spacingLeftValue = Model.Content.Value<int>("addSpaceToLeft");
+    var spacingLeftClass = spacingLeftValue.ToString() + "rem";
+
+    var maxWidthValue = Model.Content.Value<int>("maxWidth");
+    var maxWidth = maxWidthValue.ToString() + "px";
+    
+    if (maxWidthValue == 0)
+    {
+        maxWidth = "";
+    }
+
+    //Responsive variables
+    var hideInDesktopView = Model!.Content.Value<bool>("hideInDesktopView") ? "hidden-desktop" : "";
+    var hideInTabletView = Model!.Content.Value<bool>("hideInTabletView") ? "hidden-tablet" : "";
+    var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile" : "";
+}
+
+<div class="@center @hideInTabletView @hideInMobileView @hideInDesktopView"
+     style="
+            padding-right: @spacingRightClass;
+            padding-left: @spacingLeftClass;
+            padding-top: @spacingTopClass;
+            padding-bottom: @spacingBottomClass;
+            max-width: @maxWidth;
+">
+
+    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+</div>

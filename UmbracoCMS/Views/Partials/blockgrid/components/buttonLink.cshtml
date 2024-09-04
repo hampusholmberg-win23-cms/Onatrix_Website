@@ -12,5 +12,7 @@
 
 @if (!string.IsNullOrEmpty(buttonLinkText) && !string.IsNullOrEmpty(buttonLinkUrl))
 {
-    <a href="@buttonLinkUrl" class="btn-@buttonColor">@buttonLinkText</a>
+    <a href="@buttonLinkUrl" class="btn-@buttonColor"
+    style="margin-left: auto; margin-right: auto; "
+    >@buttonLinkText</a>
 }

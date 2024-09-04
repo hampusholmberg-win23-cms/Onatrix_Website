@@ -4,7 +4,6 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
-
     //Content
     var headlineContent = Model.Content.Value<string>("headlineContent");
 
@@ -15,6 +14,13 @@
 
     //Positioning
     var textAlign = Model?.Content.Value<string>("textAlign");
+    var maxWidthValue = Model?.Content.Value<int>("maxWidth");
+    var maxWidth = "";
+
+    if(maxWidthValue != 0)
+    {
+        maxWidth = maxWidthValue.ToString() + "px";
+    }
 
     //Spacing
     var spacingTopValue = Model?.Content.Value<int>("addSpaceToTop");
@@ -30,8 +36,11 @@
     var spacingLeftClass = spacingLeftValue.ToString() + "rem";
 
     //Typography
-    var lineHeight = Model?.Content.Value("lineHeight");
-
+    var lineHeight = Model?.Content.Value<decimal>("lineHeight");
+    if(lineHeight == 0)
+    {
+        lineHeight = 1.2m;
+    }
 }
 
 @if (!string.IsNullOrEmpty(headlineContent))
@@ -41,6 +50,7 @@
                 text-align: @textAlign;
                 line-height: @lineHeight;
                 margin: @spacingTopClass @spacingRightClass @spacingBottomClass @spacingLeftClass;
+                max-width: @maxWidth;
 "> 
             
         @headlineContent </>

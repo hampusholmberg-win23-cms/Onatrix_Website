@@ -4,10 +4,10 @@
 
 @{
     var imageDescription = Model.Content.Value<string>("imageDescription") ?? "";
-    var selectedImage = Model.Content.Value<IPublishedContent>("selectedImage").Url() ?? null;
+    var selectedImage = Model?.Content?.Value<IPublishedContent>("selectedImage")?.Url() ?? null;
 
-    var hideInTabletView = Model.Content.Value<bool>("hideInTabletView") ? "hidden-Tablet": "";
-    var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-Mobile": "";
+    var hideInTabletView = Model!.Content.Value<bool>("hideInTabletView") ? "hidden-tablet": "";
+    var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile": "";
 }
 
 @if (!string.IsNullOrEmpty(selectedImage))

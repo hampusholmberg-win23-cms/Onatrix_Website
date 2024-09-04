@@ -8,13 +8,36 @@
     var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
     var sectionId = sectionTitle.ToString().ToLower().Trim().Replace(" ", "-"); 
 
+    if (sectionTitle == "Success Stories Section")
+    {
+        Console.WriteLine();
+    }
+
     //Section backgrounds
     var sectionBackgroundColorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("sectionBackgroundColor")?.Label.ToLower() ?? null;
     var sectionBackgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{sectionBackgroundColorLabel}" : "";
     var sectionBackgroundImage = Model?.Content.Value<IPublishedContent>("sectionBackgroundImage")?.Url() ?? null;
+    
+    //Section backgrounds positioning when shrinking media
+    var sectionBackgroundImageHorizontalPositionValue = Model?.Content.Value<int>("sectionBackgroundImageHorizontalPosition");
+    var sectionBackgroundImageHorizontalPosition = "50%";
+
+    if (sectionBackgroundImageHorizontalPositionValue != -1)
+        sectionBackgroundImageHorizontalPosition = sectionBackgroundImageHorizontalPositionValue.ToString() + "%";
+    
+    var sectionBackgroundImageVerticalPositionValue = Model?.Content.Value<int>("sectionBackgroundImageVerticalPosition");
+    var sectionBackgroundImageVerticalPosition = "50%";
+
+    if (sectionBackgroundImageVerticalPositionValue != -1)
+        sectionBackgroundImageVerticalPosition = sectionBackgroundImageVerticalPositionValue.ToString() + "%";
 
     //formatting
-    var sectionBackgroundImageMaxWidth = Model?.Content?.Value<string>("sectionBackgroundImageMaxWidth") ?? "100%";
+    var sectionBackgroundImageMaxWidthValue = Model?.Content.Value<int>("sectionBackgroundImageMaxWidth");
+    var sectionBackgroundImageMaxWidth = "100%";
+
+    if (sectionBackgroundImageMaxWidthValue != 0)
+        sectionBackgroundImageMaxWidth = sectionBackgroundImageMaxWidthValue.ToString() + "px";
+
     var minimumHeightValue = Model?.Content?.Value<int>("minumumHeight").ToString() ?? "0";
     var minimumHeight = minimumHeightValue + "px";
 
@@ -32,45 +55,41 @@
 
     var spacingLeftValue = Model.Content.Value<int>("addSpaceToLeft");
     var spacingLeftClass = spacingLeftValue.ToString() + "rem";
+
+    //Responsive variables
+    var hideInDesktopView = Model!.Content.Value<bool>("hideInDesktopView") ? "hidden-desktop" : "";
+    var hideInTabletView = Model!.Content.Value<bool>("hideInTabletView") ? "hidden-tablet" : "";
+    var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile" : "";
 }
 
-@if (sectionBackgroundImage != null)
-{
-    <section 
-        id="@sectionId"
-             class="  @centerContentClass @sectionBackgroundColorClass"
-             style="
-                padding-right: @spacingRightClass; 
-                padding-left: @spacingLeftClass;
-                margin-top: @spacingTopClass;
-                margin-bottom: @spacingBottomClass;">
 
-        @* <div class="background-div @spacingTopClass @spacingBottomClass" style="max-width=@sectionBackgroundImageMaxWidth; background-image:url(@sectionBackgroundImage); background-size: cover; background-position: 60%;"> *@
-        <div 
-            class="background-div " 
+<section 
+    id="@sectionId"
+         class="  @centerContentClass @sectionBackgroundColorClass @hideInTabletView @hideInMobileView @hideInDesktopView"
             style="
-                    max-width: @sectionBackgroundImageMaxWidth; 
-                    min-height: @minimumHeight;
-                    background-image:url(@sectionBackgroundImage); 
-                    background-size: cover; 
-                    background-position: 60%;">
+            padding-right: @spacingRightClass; 
+            padding-left: @spacingLeftClass;
+            padding-top: @spacingTopClass;
+            padding-bottom: @spacingBottomClass;">
 
-            @await Html.GetBlockGridItemAreasHtmlAsync(Model)
-        </div>
-    </section>
-}
-
-else
-{
-    <section id="@sectionId"
-             class="  @centerContentClass @sectionBackgroundColorClass"
-             style="
-                padding-right: @spacingRightClass;
-                padding-left: @spacingLeftClass;
-                margin-top: @spacingTopClass;
-                margin-bottom: @spacingBottomClass;">
+    @if (sectionBackgroundImage != null)
+    {
+    <div 
+        class="background-div " 
+        style="
+                max-width: @sectionBackgroundImageMaxWidth; 
+                min-height: @minimumHeight;
+                background-image:url(@sectionBackgroundImage); 
+                background-repeat: no-repeat;
+                background-position: @sectionBackgroundImageHorizontalPosition @sectionBackgroundImageVerticalPosition;">
 
         @await Html.GetBlockGridItemAreasHtmlAsync(Model)
 
-    </section>
-}
+    </div>
+    }
+    else
+    {
+        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+    }
+
+</section>

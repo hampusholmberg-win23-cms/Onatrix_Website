@@ -25,12 +25,19 @@ section {
 }
 
 .hidden-tablet {
-    @include tablet {
+    @include tablet-only {
         display: none;
     }
 }
 .hidden-mobile {
     @include mobile {
+        display: none;
+    }
+}
+
+
+.hidden-desktop {
+    @include desktop {
         display: none;
     }
 }
