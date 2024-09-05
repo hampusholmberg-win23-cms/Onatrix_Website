@@ -435,12 +435,8 @@ a:active {
   }
 }
 
-section {
-  overflow: hidden;
-}
-section .background-div {
+.background-div {
   width: 100%;
-  overflow: hidden;
 }
 
 .spacing-top {
@@ -467,10 +463,12 @@ section .background-div {
 .relative-position {
   position: relative;
   overflow: visible !important;
+  z-index: 1;
 }
 
 .absolute-position {
   position: absolute;
+  z-index: 10;
 }
 
 @media (min-width: 768px) and (max-width: 1399px) {
