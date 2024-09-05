@@ -5,13 +5,16 @@
 
 @{
     var rootContent = UmbracoHelper.ContentAtRoot();
+
     var header = rootContent.FirstOrDefault(x => x.ContentType.Alias == "header");
+
+    var globalSettings = rootContent.FirstOrDefault(x => x.ContentType.Alias == "settings");
 
 
     //Top-bar address
-    var streetName = header?.Value<string>("streetName") ?? "";
-    var postalCode = header?.Value<string>("postalCode") ?? "";
-    var city = header?.Value<string>("city") ?? "";
+    var streetName = globalSettings?.Value<string>("streetName") ?? "";
+    var postalCode = globalSettings?.Value<string>("postalCode") ?? "";
+    var city = globalSettings?.Value<string>("city") ?? "";
 
 
     //Navlinks
@@ -31,7 +34,7 @@
 
 <div class="upper">
     <div class="container header-grid">
-        <p>@streetName, 111 64 Stockholm</p>
+        <p>@streetName, @postalCode @city</p>
 
         <a class="social-media-link"> <i class="fa-brands fa-facebook-f"></i> </a>
         <a class="social-media-link"> <i class="fa-brands fa-x-twitter"></i> </a>

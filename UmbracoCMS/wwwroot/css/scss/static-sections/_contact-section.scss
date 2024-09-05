@@ -1,0 +1,77 @@
+.contact-section {
+    background-color: $bg-gray;
+    max-height: 713px;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include desktop {
+            gap: 2.5rem;
+        }
+
+        .image-div {
+            display: none;
+            align-self: end;
+
+
+            @include tablet {
+                display: block;
+            }
+
+            @include desktop {
+                max-width: 45%;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+
+            @include desktop {
+                max-width: 35%;
+            }
+
+            .contact-details {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                .contact-detail {
+                    max-width: 330px;
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    grid-template-areas: "icon headline" "vacant value ";
+                    justify-items: start;
+                    align-items: center;
+
+                    i {
+                        color: $sub-color-3;
+                        grid-area: icon;
+                        padding: .5rem;
+                    }
+
+                    .contact-detail-headline {
+                        grid-area: headline;
+                        margin: 0;
+                        color: $main-color;
+                        font-weight: 700;
+                    }
+
+                    .contact-detail-value {
+                        grid-area: value;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

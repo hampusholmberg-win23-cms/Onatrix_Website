@@ -8,11 +8,22 @@
 
     var hideInTabletView = Model!.Content.Value<bool>("hideInTabletView") ? "hidden-tablet": "";
     var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile": "";
+
+    //positioning
+    var absolutePosition = Model.Content.Value<bool>("absolutePosition") ? "absolute-position" : "";
+    var relativePostion = absolutePosition == "absolute-position" ? "relative-position" : "";
+
+    var rightPositioning = Model.Content.Value<int>("rightPositioning");
+    var topPositioning = Model.Content.Value<int>("topPositioning");
 }
 
 @if (!string.IsNullOrEmpty(selectedImage))
 {
-    <div class="image-div @hideInMobileView @hideInTabletView">
-        <img src="@selectedImage" alt="@imageDescription" />
+    <div class="image-div @hideInMobileView @hideInTabletView @relativePostion">
+        <img 
+            class="@absolutePosition" 
+            src="@selectedImage" 
+            alt="@imageDescription"
+            style="right: @rightPositioning; top: @topPositioning;" />
     </div>
 }

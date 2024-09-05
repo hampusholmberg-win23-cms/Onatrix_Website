@@ -8,7 +8,7 @@
     var sectionTitle = Model?.Content.Value<string>("sectionTitle") ?? "";
     var sectionId = sectionTitle.ToString().ToLower().Trim().Replace(" ", "-"); 
 
-    if (sectionTitle == "Success Stories Section")
+    if (sectionTitle == "Great Reviews Section")
     {
         Console.WriteLine();
     }
@@ -75,11 +75,11 @@
     @if (sectionBackgroundImage != null)
     {
     <div 
-        class="background-div " 
-        style="
+        class="background-div "
+            style="                
+                background-image:url(@sectionBackgroundImage);
                 max-width: @sectionBackgroundImageMaxWidth; 
                 min-height: @minimumHeight;
-                background-image:url(@sectionBackgroundImage); 
                 background-repeat: no-repeat;
                 background-position: @sectionBackgroundImageHorizontalPosition @sectionBackgroundImageVerticalPosition;">
 

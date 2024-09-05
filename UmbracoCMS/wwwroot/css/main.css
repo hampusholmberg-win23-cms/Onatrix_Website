@@ -464,6 +464,15 @@ section .background-div {
   flex-direction: column;
 }
 
+.relative-position {
+  position: relative;
+  overflow: visible !important;
+}
+
+.absolute-position {
+  position: absolute;
+}
+
 @media (min-width: 768px) and (max-width: 1399px) {
   .hidden-tablet {
     transition-duration: 0.5s;
@@ -662,4 +671,80 @@ footer .footer-div .container span {
 }
 .sub-header-section .background .container .content span {
   color: #D9C3A9;
+}
+
+.contact-section {
+  background-color: #f7f7f7;
+  max-height: 713px;
+}
+.contact-section .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 1400px) {
+  .contact-section .container {
+    transition-duration: 0.5s;
+    gap: 2.5rem;
+  }
+}
+.contact-section .container .image-div {
+  display: none;
+  align-self: end;
+}
+@media (min-width: 768px) {
+  .contact-section .container .image-div {
+    transition-duration: 0.5s;
+    display: block;
+  }
+}
+@media (min-width: 1400px) {
+  .contact-section .container .image-div {
+    transition-duration: 0.5s;
+    max-width: 45%;
+  }
+}
+.contact-section .container .image-div img {
+  width: 100%;
+}
+.contact-section .container .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+@media (min-width: 1400px) {
+  .contact-section .container .content {
+    transition-duration: 0.5s;
+    max-width: 35%;
+  }
+}
+.contact-section .container .content .contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.contact-section .container .content .contact-details .contact-detail {
+  max-width: 330px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "icon headline" "vacant value ";
+  justify-items: start;
+  align-items: center;
+}
+.contact-section .container .content .contact-details .contact-detail i {
+  color: #D9C3A9;
+  grid-area: icon;
+  padding: 0.5rem;
+}
+.contact-section .container .content .contact-details .contact-detail .contact-detail-headline {
+  grid-area: headline;
+  margin: 0;
+  color: #4F5955;
+  font-weight: 700;
+}
+.contact-section .container .content .contact-details .contact-detail .contact-detail-value {
+  grid-area: value;
+  margin: 0;
 }

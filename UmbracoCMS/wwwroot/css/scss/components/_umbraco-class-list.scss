@@ -24,6 +24,15 @@ section {
     flex-direction: column;
 }
 
+.relative-position {
+    position: relative;
+    overflow: visible !important;
+}
+.absolute-position {
+    position: absolute;
+    
+}
+
 .hidden-tablet {
     @include tablet-only {
         display: none;
@@ -34,7 +43,6 @@ section {
         display: none;
     }
 }
-
 
 .hidden-desktop {
     @include desktop {

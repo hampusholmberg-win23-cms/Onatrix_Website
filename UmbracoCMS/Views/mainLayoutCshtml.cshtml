@@ -10,6 +10,7 @@
 	var currentPage = Umbraco.AssignedContentItem;
 
 	var extendedHeader = currentPage!.Value<bool>("extendedHeader");
+	var contactSection = currentPage!.Value<string>("contactSection");
 }
 
 <html>
@@ -34,7 +35,15 @@
 		{
 			@await Html.PartialAsync("partials/static/extendedHeaderPartial.cshtml")
 		}
+		@if (contactSection == "Top")
+		{
+			@await Html.PartialAsync("partials/static/contactSection.cshtml")
+		}
 			@RenderBody()
+		@if (contactSection == "Bottom")
+		{
+			@await Html.PartialAsync("partials/static/contactSection.cshtml")
+		}
 		</main>
 
 		<footer>

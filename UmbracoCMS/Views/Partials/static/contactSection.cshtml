@@ -1,0 +1,62 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+
+@{
+    var rootContent = UmbracoHelper.ContentAtRoot();
+    var globalSettings = rootContent.FirstOrDefault(x => x.ContentType.Alias == "settings");
+
+
+    //address
+    var streetName = globalSettings?.Value<string>("streetName") ?? "";
+    var postalCode = globalSettings?.Value<string>("postalCode") ?? "";
+    var city = globalSettings?.Value<string>("city") ?? "";
+
+
+    //contact
+    var phoneNumber = globalSettings?.Value<string>("phoneNumber") ?? "";
+    var emailAddress = globalSettings?.Value<string>("emailAddress") ?? "";
+}
+
+<section class="contact-section">
+
+    <div class="container">
+
+        <div class="image-div">
+            <img src="/images/sub-footer-image.png" />
+        </div>
+
+        <div class="content">
+
+            <h2>
+                Let us know about your next project
+            </h2>
+
+            <div class="contact-details">
+
+                <div class="contact-detail">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="contact-detail-headline">Office location</p>
+                    <p class="contact-detail-value">@streetName, @postalCode @city</p>
+                </div>
+
+                <div class="contact-detail">
+
+                    <i class="fa-solid fa-phone-flip"></i>
+                    <p class="contact-detail-headline">Phone number</p>
+                    <p class="contact-detail-value">@phoneNumber</p>
+
+                </div>
+
+                <div class="contact-detail">
+
+                    <i class="fa-solid fa-envelope"></i>
+                    <p class="contact-detail-headline">E-mail address</p>
+                    <p class="contact-detail-value">@emailAddress</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
