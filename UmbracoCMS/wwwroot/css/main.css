@@ -531,3 +531,135 @@ section .background-div {
     grid-column-end: span min(var(--umb-block-grid--area-column-span, 1), var(--umb-block-grid--area-grid-columns));
   }
 }
+header {
+  position: sticky;
+  top: 0; /*8*/
+  z-index: 10;
+}
+header .upper {
+  background-color: #4F5955;
+  padding: 0.25rem 0;
+}
+header .upper .container {
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  header .upper .container {
+    transition-duration: 0.5s;
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+  }
+}
+header .upper .container p {
+  display: none;
+  color: #ffffff;
+}
+@media (min-width: 768px) {
+  header .upper .container p {
+    transition-duration: 0.5s;
+    display: block;
+  }
+}
+header .upper .container .header-grid {
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+}
+header .lower {
+  background-color: #ffffff;
+}
+header .lower .container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (min-width: 768px) {
+  header .lower .container {
+    transition-duration: 0.5s;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+header .lower .container .navbar {
+  display: none;
+  justify-self: center;
+  align-self: center;
+}
+@media (min-width: 768px) {
+  header .lower .container .navbar {
+    transition-duration: 0.5s;
+    display: flex;
+    gap: 1rem;
+  }
+}
+@media (min-width: 1400px) {
+  header .lower .container .navbar {
+    transition-duration: 0.5s;
+    display: flex;
+    gap: 4.7rem;
+  }
+}
+header .lower .container .btn-mobile {
+  justify-self: end;
+}
+@media (min-width: 768px) {
+  header .lower .container .btn-mobile {
+    transition-duration: 0.5s;
+    display: none;
+  }
+}
+
+.mobile-toggled {
+  z-index: 5;
+}
+.mobile-toggled .lower .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "icon button" "navbar navbar";
+}
+.mobile-toggled .lower .container .icon {
+  grid-area: icon;
+}
+.mobile-toggled .lower .container .btn-mobile {
+  grid-area: button;
+}
+.mobile-toggled .lower .container .navbar {
+  grid-area: navbar;
+  display: flex !important;
+  flex-direction: column;
+}
+
+footer .footer-div {
+  background-color: #0E0E0E;
+  height: 64px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+footer .footer-div .container span {
+  color: #D9C3A9;
+}
+
+.sub-header-section {
+  height: 245px;
+  background-color: #f7f7f7;
+}
+.sub-header-section .background {
+  height: 100%;
+  width: auto;
+}
+.sub-header-section .background .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sub-header-section .background .container .content {
+  text-align: center;
+}
+.sub-header-section .background .container .content h1 {
+  font-size: 40px;
+}
+.sub-header-section .background .container .content span {
+  color: #D9C3A9;
+}

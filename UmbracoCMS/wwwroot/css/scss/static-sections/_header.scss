@@ -1,0 +1,107 @@
+header {
+    position: sticky;
+    top: 0;    /*8*/
+    z-index: 10;
+
+    .upper {
+        background-color: $main-color;
+        padding: 0.25rem 0;
+
+        .container {
+            display: flex;
+            justify-content: center;
+
+            @include tablet {
+                display: grid;
+                grid-template-columns: 1fr auto auto auto;
+            }
+
+            p {
+                display: none;
+                color: $white;
+
+                @include tablet {
+                    display: block;
+                }
+            }
+
+            .header-grid {
+                display: flex;
+                grid-template-columns: 1fr 1fr 1fr;
+                justify-content: center;
+            }
+        }
+    }
+
+    .lower {
+        background-color: $white;
+
+        .container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            @include tablet {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .header-logo {
+            }
+
+            .navbar {
+                display: none;
+                justify-self: center;
+                align-self: center;
+
+                @include tablet {
+                    display: flex;
+                    gap: 1rem;
+                }
+
+                @include desktop {
+                    display: flex;
+                    gap: 4.7rem;
+                }
+            }
+
+            .btn-mobile {
+                justify-self: end;
+
+                @include tablet {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.mobile-toggled {
+    z-index: 5;
+
+    .upper {
+    }
+
+    .lower {
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "icon button" "navbar navbar";
+
+            .icon {
+                grid-area: icon;
+            }
+
+            .btn-mobile {
+                grid-area: button;
+            }
+
+            .navbar {
+                grid-area: navbar;
+                display: flex !important;
+                flex-direction: column;
+            }
+        }
+    }
+}

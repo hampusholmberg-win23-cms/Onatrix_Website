@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+    var rootContent = UmbracoHelper.ContentAtRoot();
+    var header = rootContent.FirstOrDefault(x => x.ContentType.Alias == "header");
+
+    var streetName = header?.Value<string>("streetName") ?? "";
+}
+
+<div class="footer-div">
+    <div class="container">
+        <p>© Onatrix. All Rights Reserved. Credits to <span>Themesflat</span></p>
+    </div>
+</div>

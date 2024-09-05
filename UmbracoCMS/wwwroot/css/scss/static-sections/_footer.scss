@@ -1,0 +1,14 @@
+footer {
+    .footer-div {
+        background-color: $black;
+        height: 64px;
+        @include flex-start-center;
+
+        .container {
+
+            span {
+                color: $sub-color-3;
+            }
+        }
+    }
+}

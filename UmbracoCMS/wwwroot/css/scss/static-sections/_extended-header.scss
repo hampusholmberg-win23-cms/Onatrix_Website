@@ -1,0 +1,25 @@
+.sub-header-section {
+    height: 245px;
+    background-color: $bg-gray;
+
+    .background {
+        height: 100%;
+        width: auto;
+
+        .container {
+            @include flex-center-center;
+
+            .content {
+                text-align: center;
+
+                h1 {
+                    font-size: 40px;
+                }
+
+                span {
+                    color: $sub-color-3;
+                }
+            }
+        }
+    }
+}

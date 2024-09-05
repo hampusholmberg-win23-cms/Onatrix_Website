@@ -1,9 +1,16 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
 @{
 	Layout = null;
-}
 
+	var rootContent = UmbracoHelper.ContentAtRoot();
+	var currentPage = Umbraco.AssignedContentItem;
+
+	var extendedHeader = currentPage!.Value<bool>("extendedHeader");
+}
 
 <html>
 
@@ -18,21 +25,21 @@
 
 	<body class="wrapper">
 
-@* 
 		<header>
-			@await Html.PartialAsync("partials/headerSectionPartial.cshtml")
+			@await Html.PartialAsync("partials/static/headerPartial.cshtml")
 		</header>
- *@
 
 		<main>
+		@if(extendedHeader)
+		{
+			@await Html.PartialAsync("partials/static/extendedHeaderPartial.cshtml")
+		}
 			@RenderBody()
 		</main>
 
-@* 
 		<footer>
-			@await Html.PartialAsync("partials/footerSectionPartial.cshtml")
+			@await Html.PartialAsync("partials/static/footerPartial.cshtml")
 		</footer>
- *@
 
 	</body>
 
