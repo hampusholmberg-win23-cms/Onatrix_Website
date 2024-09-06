@@ -3,8 +3,13 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
+    //Flexing
     var center = Model.Content.Value<bool>("centerContentOnPage") ? "center" : "";
 
+    var alignment = Model.Content.Value<string>("alignment")?.ToString();
+
+
+    //Spacing 
     var spacingTopValue = Model.Content.Value<int>("addSpaceToTop");
     var spacingTopClass = spacingTopValue.ToString() + "rem";
 
@@ -17,9 +22,43 @@
     var spacingLeftValue = Model.Content.Value<int>("addSpaceToLeft");
     var spacingLeftClass = spacingLeftValue.ToString() + "rem";
 
+    //Formatting
     var maxWidthValue = Model.Content.Value<int>("maxWidth");
     var maxWidth = maxWidthValue.ToString() + "px";
-    
+
+    //Borders
+    var border = Model?.Content.Value<string>("border")?.ToString() ?? "";
+
+    if(!string.IsNullOrEmpty(border) && !string.Equals(border, "None") )
+    {
+        switch (border)
+        {
+            case "Full":
+                border = "border-full";
+                break;
+
+            case "Top":
+                border = "border-top";
+                break;
+
+            case "Bottom":
+                border = "border-bottom";
+                break;
+
+            case "Right":
+                border = "border-right";
+                break;
+
+            case "Left":
+                border = "border-left";
+                break;
+
+            default:
+                border = "";
+                break;
+        }
+    }
+
     if (maxWidthValue == 0)
     {
         maxWidth = "";
@@ -31,7 +70,7 @@
     var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile" : "";
 }
 
-<div class="@center @hideInTabletView @hideInMobileView @hideInDesktopView"
+<div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border"
      style="
             padding-right: @spacingRightClass;
             padding-left: @spacingLeftClass;

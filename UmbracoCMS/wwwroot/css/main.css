@@ -43,6 +43,10 @@
   color: #ffffff;
 }
 
+.text-gray {
+  color: #9C9EA6;
+}
+
 .container {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
@@ -490,6 +494,26 @@ a:active {
     transition-duration: 0.5s;
     display: none;
   }
+}
+
+.border-full {
+  border: 1px solid #EAEAEA;
+}
+
+.border-top {
+  border-top: 1px solid #EAEAEA;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.border-right {
+  border-right: 1px solid #EAEAEA;
+}
+
+.border-left {
+  border-left: 1px solid #EAEAEA;
 }
 
 .umb-block-grid__layout-container {

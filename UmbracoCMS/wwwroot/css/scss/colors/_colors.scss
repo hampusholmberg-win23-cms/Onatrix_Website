@@ -1,6 +1,7 @@
-$transparent:        transparent;
+$transparent:       transparent;
 $white:             #ffffff;
 $bg-gray:           #f7f7f7;
+$border-gray:       #EAEAEA;
 $form-gray:         #EBEBEB;
 $main-color:        #4F5955;
 $primary:           #4F5955;
@@ -49,6 +50,9 @@ $outline-color:     #DABA93;
 }
 .text-white {
     color: $white;
+}
+.text-gray {
+    color: $note-color-1;
 }
 
 

@@ -47,6 +47,27 @@
 }
 
 
+//BORDER CLASSES
+.border-full {
+    border: 1px solid $border-gray;
+}
+
+.border-top {
+    border-top: 1px solid $border-gray;
+}
+
+.border-bottom {
+    border-bottom: 1px solid $border-gray;
+}
+
+.border-right {
+    border-right: 1px solid $border-gray;
+}
+
+.border-left {
+    border-left: 1px solid $border-gray;
+}
+
 
 
 

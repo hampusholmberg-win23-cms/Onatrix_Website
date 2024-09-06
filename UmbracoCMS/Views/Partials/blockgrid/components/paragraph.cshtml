@@ -26,6 +26,14 @@
     //Font style
     var fontStyle = Model.Content.Value<string>("fontStyle");
 
+    //Font weight
+    // var fontWeight = Model.Content.Value<int>("fontWeight");
+
+    // if(fontWeight == 0)
+    // {
+    //     fontWeight = 400;
+    // }
+
     //Colors
     var textColorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("textColor")?.Label.ToLower() ?? null;
     var textColorClass = !string.IsNullOrEmpty(textColorLabel) ? $"text-{textColorLabel}" : "";
@@ -41,6 +49,8 @@
             font-size: @fontSize;
             font-style: @fontStyle;
             ">
+        @* font-weight: @fontWeight; *@
+
         @paragraphContent
     </p> 
 }
