@@ -1,7 +1,13 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
 
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
 
 @{
     var rootContent = UmbracoHelper.ContentAtRoot();
@@ -10,25 +16,12 @@
 
     var globalSettings = rootContent.FirstOrDefault(x => x.ContentType.Alias == "settings");
 
-
     //Top-bar address
     var streetName = globalSettings?.Value<string>("streetName") ?? "";
     var postalCode = globalSettings?.Value<string>("postalCode") ?? "";
     var city = globalSettings?.Value<string>("city") ?? "";
 
-
-    //Navlinks
-    var navTitle1 = header?.Value<string>("navigationLinkTitle1") ?? "";
-    var navLinkUrl1 = header?.Value<string>("navigationLinkUrl1") ?? "";
-
-    var navTitle2 = header?.Value<string>("navigationLinkTitle2") ?? "";
-    var navLinkUrl2 = header?.Value<string>("navigationLinkUrl2") ?? "";
-
-    var navTitle3 = header?.Value<string>("navigationLinkTitle3") ?? "";
-    var navLinkUrl3 = header?.Value<string>("navigationLinkUrl3") ?? "";
-
-    var navTitle4 = header?.Value<string>("navigationLinkTitle4") ?? "";
-    var navLinkUrl4 = header?.Value<string>("navigationLinkUrl4") ?? "";
+    var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();
 
 }
 
@@ -50,12 +43,15 @@
             <img class="header-logo" src="/images/onatrix-logo.svg" />
         </a>
 
-        <div class="navbar">
-            <a href="/@navLinkUrl1" class="navlink">@navTitle1</a>
-            <a href="/@navLinkUrl2" class="navlink">@navTitle2</a>
-            <a href="/@navLinkUrl3" class="navlink">@navTitle3</a>
-            <a href="/@navLinkUrl4" class="navlink">@navTitle4</a>
-        </div>
+        @if (selection?.Length > 0)
+        {
+            <div class="navbar">
+                @foreach (var item in selection)
+                {
+                    <a href="@item.Url(PublishedUrlProvider)" class="navlink @(item.IsAncestorOrSelf(Model) ? "active" : null)">@item.Name</a>
+                }
+            </div>
+        }
 
         <button class="btn-mobile" onclick="toggleMenu()"><i id="btn-mobile-icon" class="fa-solid fa-bars"></i></button>
 

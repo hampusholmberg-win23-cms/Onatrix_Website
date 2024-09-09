@@ -1,0 +1,41 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    Layout = "mainLayoutCshtml.cshtml";
+}
+
+@{
+    var services = Umbraco.Content(Guid.Parse("3d323303-08cc-40f7-945b-2234e3fecd8a"))?
+        .ChildrenOfType("serviceItem")?
+        .Where(x => x.IsVisible())
+        .OrderBy(x => x.CreateDate);
+}
+
+<section id="services">
+
+    <div class="services-grid container">
+
+        @foreach (var service in services)
+        {
+            var serviceTitle = service.Value<string>("serviceTitle");
+            var serviceDescription = service.Value<string>("serviceDescription");
+            var serviceThumbnail = service.Value<IPublishedContent>("serviceThumbnail").Url();
+
+            <a class="service-tile" href="@service.Url()">
+
+                <div class="service-tile-header">
+                    <h5>@serviceTitle</h5>
+                </div>
+                <div class="service-tile-image">
+                    <img src="@serviceThumbnail">
+                </div>
+                <div class="service-tile-body">
+                    <p>@serviceDescription</p>
+                </div>
+
+            </a>
+        }
+    </div>
+
+</section>

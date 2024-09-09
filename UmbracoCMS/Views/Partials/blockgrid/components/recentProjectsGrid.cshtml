@@ -1,0 +1,38 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+
+@{
+    var projects = Umbraco.Content(Guid.Parse("7d0e4d53-c23d-4516-bfb9-9c394050bb2d"))?
+            .ChildrenOfType("projectItem")?
+            .Where(x => x.IsVisible())
+            .OrderByDescending(x => x.CreateDate)
+            .Take(4);
+}
+
+<div class="projects-grid">
+
+    @if (projects != null)
+    {
+        @foreach (var project in projects)
+        {
+            var projectTitle = project.Value<string>("projectTitle");
+            var projectDescription = project.Value<string>("projectDescription");
+            var projectThumbnail = project.Value<IPublishedContent>("projectThumbnail").Url();
+
+            <a class="project-tile" href="@project.Url()">
+                <div class="background-image" style="background-image: url(@projectThumbnail);">
+                </div>
+                <div class="project-tile-ribbon">
+                    <div class="left">
+                        <h6>@projectTitle</h6>
+                        <p>@projectDescription</p>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right hidden"></i>
+
+                </div>
+            </a>
+        }
+    }
+</div>
