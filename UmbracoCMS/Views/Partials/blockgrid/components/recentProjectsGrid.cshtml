@@ -18,7 +18,7 @@
         {
             var projectTitle = project.Value<string>("projectTitle");
             var projectDescription = project.Value<string>("projectDescription");
-            var projectThumbnail = project.Value<IPublishedContent>("projectThumbnail").Url();
+            var projectThumbnail = project.Value<IPublishedContent>("projectThumbnail")?.Url();
 
             <a class="project-tile" href="@project.Url()">
                 <div class="background-image" style="background-image: url(@projectThumbnail);">

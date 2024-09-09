@@ -3,11 +3,15 @@
     border: 1px solid $border-gray;
     transition-duration: .25s;
     display: block;
-    max-width: 250px;
+    width: 370px;
     background-color: $white;
 
     @include tablet {
         max-width: 340px;
+    }
+
+    @include desktop {
+        width: 370px;
     }
 
     &:hover {
@@ -45,12 +49,16 @@
         overflow: hidden;
         @include flex-center-center;
 
+
+
         @include tablet {
             height: 220px;
         }
 
         img {
-            height: 100%;
+            width: 100%; /* Ensure the image stretches horizontally */
+            height: 100%; /* Ensure the image stretches vertically */
+            object-fit: cover;
         }
     }
 

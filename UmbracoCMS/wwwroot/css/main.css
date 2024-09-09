@@ -272,13 +272,19 @@ a:active {
   border: 1px solid #EAEAEA;
   transition-duration: 0.25s;
   display: block;
-  max-width: 250px;
+  width: 370px;
   background-color: #ffffff;
 }
 @media (min-width: 768px) {
   .service-tile {
     transition-duration: 0.5s;
     max-width: 340px;
+  }
+}
+@media (min-width: 1400px) {
+  .service-tile {
+    transition-duration: 0.5s;
+    width: 370px;
   }
 }
 .service-tile:hover {
@@ -321,7 +327,9 @@ a:active {
   }
 }
 .service-tile .service-tile-image img {
-  height: 100%;
+  width: 100%; /* Ensure the image stretches horizontally */
+  height: 100%; /* Ensure the image stretches vertically */
+  object-fit: cover;
 }
 .service-tile .service-tile-body {
   height: 120px;
@@ -440,6 +448,27 @@ a:active {
   .projects-grid {
     transition-duration: 0.5s;
   }
+}
+
+.pagination {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.pagination a {
+  height: 54px;
+  width: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination .a-number {
+  border: 2px solid #f7f7f7;
+  border-radius: 999px;
 }
 
 .background-div {

@@ -29,3 +29,22 @@
     @include desktop {
     }
 }
+
+.pagination {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    @include flex-center-center;
+    gap: 1rem;
+
+    a {
+        height: 54px;
+        width: 54px;
+        @include flex-center-center;
+    }
+
+    .a-number {
+        border: 2px solid $bg-gray;
+        border-radius: 999px;
+    }
+}
