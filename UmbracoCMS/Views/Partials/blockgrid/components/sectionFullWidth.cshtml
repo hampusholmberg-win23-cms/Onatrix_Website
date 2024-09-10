@@ -18,18 +18,14 @@
     var sectionBackgroundColorClass = (!string.IsNullOrEmpty(sectionBackgroundColorLabel) && sectionBackgroundColorLabel != "none") ? $"bg-{sectionBackgroundColorLabel}" : "";
     var sectionBackgroundImage = Model?.Content.Value<IPublishedContent>("sectionBackgroundImage")?.Url() ?? null;
     
-    //Section backgrounds positioning when shrinking media
-    var sectionBackgroundImageHorizontalPositionValue = Model?.Content.Value<int>("sectionBackgroundImageHorizontalPosition");
-    var sectionBackgroundImageHorizontalPosition = "50%";
+    // Section backgrounds positioning when shrinking media
+    var sectionBackgroundImageHorizontalPosition = Model?.Content.Value<int>("sectionBackgroundImageHorizontalPosition") is int hPos && hPos != -1
+        ? $"{hPos}%"
+        : "50%";
 
-    if (sectionBackgroundImageHorizontalPositionValue != -1)
-        sectionBackgroundImageHorizontalPosition = sectionBackgroundImageHorizontalPositionValue.ToString() + "%";
-    
-    var sectionBackgroundImageVerticalPositionValue = Model?.Content.Value<int>("sectionBackgroundImageVerticalPosition");
-    var sectionBackgroundImageVerticalPosition = "50%";
-
-    if (sectionBackgroundImageVerticalPositionValue != -1)
-        sectionBackgroundImageVerticalPosition = sectionBackgroundImageVerticalPositionValue.ToString() + "%";
+    var sectionBackgroundImageVerticalPosition = Model?.Content.Value<int>("sectionBackgroundImageVerticalPosition") is int vPos && vPos != -1
+        ? $"{vPos}%"
+        : "50%";
 
     //formatting
     var sectionBackgroundImageMaxWidthValue = Model?.Content.Value<int>("sectionBackgroundImageMaxWidth");
@@ -70,7 +66,8 @@
             padding-right: @spacingRightClass; 
             padding-left: @spacingLeftClass;
             padding-top: @spacingTopClass;
-            padding-bottom: @spacingBottomClass;">
+            padding-bottom: @spacingBottomClass;
+            min-height: @minimumHeight;">
 
     @if (sectionBackgroundImage != null)
     {

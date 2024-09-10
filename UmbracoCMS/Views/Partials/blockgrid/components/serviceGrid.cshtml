@@ -3,7 +3,8 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
-    int servicesDisplayCount = 2;
+    var pagination = Model.Content.Value<bool>("pagination") ? "pagination" : "hidden";
+    var pageSize = Model.Content.Value<int>("pageSize") == 0 ? 6 : Model.Content.Value<int>("pageSize");
     int currentPage = 1;
 
     if (int.TryParse(Context.Request.Query["page"], out int parsedPage))
@@ -16,8 +17,8 @@
          .Where(x => x.IsVisible())
          .OrderByDescending(x => x.CreateDate);
 
-    var servicesSelection = services?.Skip((currentPage - 1) * servicesDisplayCount).Take(servicesDisplayCount);
-    int totalNumberOfPages = (int)Math.Ceiling((double)services.Count() / servicesDisplayCount);
+    var servicesSelection = services?.Skip((currentPage - 1) * pageSize).Take(pageSize);
+    int totalNumberOfPages = (int)Math.Ceiling((double)services.Count() / pageSize);
 }
 
 <div class="services-grid">
@@ -47,14 +48,14 @@
     }
 </div>
 
-<div class="pagination">
+<div class="@pagination">
 
     @if (currentPage > 1)
     {
         <a href="?page=@(currentPage - 1)">Prev</a>
     }
 
-    @for(int i = 1; i < totalNumberOfPages; i++)
+    @for(int i = 1; i <= totalNumberOfPages; i++)
     {
         if (i == currentPage)
         {

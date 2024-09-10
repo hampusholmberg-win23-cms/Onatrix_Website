@@ -528,6 +528,11 @@ a:active {
   }
 }
 
+.full-height-width {
+  width: 100%;
+  height: 100%;
+}
+
 .border-full {
   border: 1px solid #EAEAEA;
 }

@@ -13,18 +13,35 @@
     //positioning
     var absolutePosition = Model.Content.Value<bool>("absolutePosition") ? "absolute-position" : "";
     var relativePostion = absolutePosition == "absolute-position" ? "relative-position" : "";
-
     var rightPositioning = Model.Content.Value<int>("rightPositioning").ToString() + "%";
     var topPositioning = Model.Content.Value<int>("topPositioning").ToString();
+
+    //Disable standard image handling
+    var disableStandardImageHandling = Model.Content.Value<bool>("disableStandardImageHandling");
 }
 
 @if (!string.IsNullOrEmpty(selectedImage))
 {
-    <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion">
-        <img 
-            class="@absolutePosition" 
-            src="@selectedImage" 
-            alt="@imageDescription"
-            style="right: @rightPositioning; top: @topPositioning;" />
-    </div>
+    if (disableStandardImageHandling)
+    {
+        <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion">
+            <img class="@absolutePosition"
+                 src="@selectedImage"
+                 alt="@imageDescription"
+                 style="
+                    right: @rightPositioning; 
+                    top: @topPositioning;
+                    height: auto;
+                    max-width: none;" />
+        </div>
+    }
+    else
+    {
+        <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion">
+            <img class="@absolutePosition"
+                 src="@selectedImage"
+                 alt="@imageDescription"
+                 style="right: @rightPositioning; top: @topPositioning;" />
+        </div>
+    }
 }

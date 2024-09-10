@@ -3,11 +3,20 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
+    //Background Image
+    var backgroundImage = Model?.Content.Value<IPublishedContent>("backgroundImage")?.Url() ?? null;
+
+    var backgroundImageHorizontalPosition = Model?.Content.Value<int>("backgroundImageHorizontalPosition") is int hPos && hPos != -1
+        ? $"{hPos}%"
+        : "50%";
+
+    var backgroundImageVerticalPosition = Model?.Content.Value<int>("backgroundImageVerticalPosition") is int vPos && vPos != -1
+        ? $"{vPos}%"
+        : "50%";
+
     //Flexing
     var center = Model.Content.Value<bool>("centerContentOnPage") ? "center" : "";
-
     var alignment = Model.Content.Value<string>("alignment")?.ToString();
-
 
     //Spacing 
     var spacingTopValue = Model.Content.Value<int>("addSpaceToTop");
@@ -25,6 +34,7 @@
     //Formatting
     var maxWidthValue = Model.Content.Value<int>("maxWidth");
     var maxWidth = maxWidthValue.ToString() + "px";
+    var takeUpAllAvailableSpace = Model.Content.Value<bool>("takeUpAllAvailableSpace") ? "full-height-width" : "";
 
     //Borders
     var border = Model?.Content.Value<string>("border")?.ToString() ?? "";
@@ -70,14 +80,36 @@
     var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile" : "";
 }
 
-<div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border"
-     style="
+
+
+@if (backgroundImage != null)
+{
+    <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace"
+         style="
             padding-right: @spacingRightClass;
             padding-left: @spacingLeftClass;
             padding-top: @spacingTopClass;
             padding-bottom: @spacingBottomClass;
             max-width: @maxWidth;
-">
+            background-image:url(@backgroundImage);
+            background-repeat: no-repeat;
+            background-position: @backgroundImageHorizontalPosition @backgroundImageVerticalPosition;
+        ">
 
-    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
-</div>
+        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+    </div>
+}
+else
+{
+    <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace"
+         style="
+            padding-right: @spacingRightClass;
+            padding-left: @spacingLeftClass;
+            padding-top: @spacingTopClass;
+            padding-bottom: @spacingBottomClass;
+            max-width: @maxWidth;
+    ">
+
+        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+    </div>
+}

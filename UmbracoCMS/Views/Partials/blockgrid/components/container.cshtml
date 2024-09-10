@@ -1,11 +1,40 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Umbraco.Cms.Core.PropertyEditors.ValueConverters
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 
 @{
     var centerContentClass = (Model.Content.Value<bool>("centerContent")) ? "center-container" : "";
+
+    //positioning
+    var absolutePosition = Model.Content.Value<bool>("absolutePosition") ? "absolute-position" : "";
+    var relativePostion = absolutePosition == "absolute-position" ? "relative-position" : "";
+    var rightPositioning = Model.Content.Value<int>("rightPositioning").ToString() + "%";
+    var topPositioning = Model.Content.Value<int>("topPositioning").ToString();
+
+    //BG color
+    var backgroundColorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("backgroundColor")?.Label.ToLower() ?? null;
+    var backgroundColorClass = (!string.IsNullOrEmpty(backgroundColorLabel) && backgroundColorLabel != "none") ? $"bg-{backgroundColorLabel}" : "";
 }
 
-<div class="container @centerContentClass">
-    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
-</div>
+@if (absolutePosition == "absolute-position")
+{
+    <div class="@relativePostion"
+         style="
+        display:flex;
+        align-items:center;
+        justify-content: center;">
+        <div class="container @centerContentClass @absolutePosition @backgroundColorClass"
+             style="
+            top: @topPositioning;">
+
+            @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+        </div>
+    </div>
+}
+else
+{
+    <div class="container @centerContentClass @backgroundColorClass">
+        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+    </div>
+}
