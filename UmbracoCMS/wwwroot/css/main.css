@@ -912,3 +912,97 @@ footer .footer-div .container span {
     border-left: 1px solid #EAEAEA;
   }
 }
+
+#project-item .container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column-reverse;
+}
+@media (min-width: 768px) {
+  #project-item .container {
+    transition-duration: 0.5s;
+    flex-direction: row;
+    justify-content: end;
+  }
+}
+@media (min-width: 1400px) {
+  #project-item .container {
+    transition-duration: 0.5s;
+    gap: 3rem;
+  }
+}
+@media (min-width: 1400px) {
+  #project-item .container .right {
+    transition-duration: 0.5s;
+    width: 340px;
+  }
+}
+#project-item .container .right .about-us-box {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+#project-item .container .right .about-us-box img {
+  max-width: 100%;
+  height: auto;
+}
+#project-item .container .right .online-support-box {
+  padding: 1rem;
+  background-color: #4F5955;
+  min-height: 223px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #project-item .container .right .online-support-box {
+    transition-duration: 0.5s;
+  }
+}
+@media (min-width: 1400px) {
+  #project-item .container .right .online-support-box {
+    transition-duration: 0.5s;
+  }
+}
+#project-item .container .right .online-support-box .title {
+  color: #F2EDDC;
+  font-weight: 600;
+  font-size: 22px;
+}
+#project-item .container .right .online-support-box p {
+  color: #ffffff;
+}
+#project-item .container .right .online-support-box input {
+  border: 1px solid #EBEBEB;
+  border-radius: 5px;
+  padding: 1rem;
+  font-style: italic;
+  outline: none;
+  width: 100%;
+}
+#project-item .container .right .online-support-box input:focus {
+  border: 1px solid #DABA93;
+}
+@media (min-width: 768px) {
+  #project-item .container .right {
+    transition-duration: 0.5s;
+    min-width: 180px;
+  }
+}
+@media (min-width: 1400px) {
+  #project-item .container .right {
+    transition-duration: 0.5s;
+    min-width: 348px;
+  }
+}
+#project-item .container .left img {
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 768px) {
+  #project-item .container .left {
+    transition-duration: 0.5s;
+    padding-right: 3rem;
+    max-width: 100%;
+    border-right: 1px solid #EAEAEA;
+  }
+}
