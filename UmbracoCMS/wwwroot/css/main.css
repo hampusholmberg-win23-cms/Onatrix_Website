@@ -811,3 +811,104 @@ footer .footer-div .container span {
   grid-area: value;
   margin: 0;
 }
+
+#service-item .container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column-reverse;
+}
+@media (min-width: 768px) {
+  #service-item .container {
+    transition-duration: 0.5s;
+    flex-direction: row;
+  }
+}
+@media (min-width: 1400px) {
+  #service-item .container {
+    transition-duration: 0.5s;
+    gap: 3rem;
+  }
+}
+@media (min-width: 1400px) {
+  #service-item .container .left {
+    transition-duration: 0.5s;
+    width: 340px;
+  }
+}
+#service-item .container .left .about-us-box {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+#service-item .container .left .about-us-box img {
+  max-width: 100%;
+  height: auto;
+}
+#service-item .container .left .online-support-box {
+  padding: 1rem;
+  background-color: #4F5955;
+  min-height: 223px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #service-item .container .left .online-support-box {
+    transition-duration: 0.5s;
+  }
+}
+@media (min-width: 1400px) {
+  #service-item .container .left .online-support-box {
+    transition-duration: 0.5s;
+  }
+}
+#service-item .container .left .online-support-box .title {
+  color: #F2EDDC;
+  font-weight: 600;
+  font-size: 22px;
+}
+#service-item .container .left .online-support-box p {
+  color: #ffffff;
+}
+#service-item .container .left .online-support-box input {
+  border: 1px solid #EBEBEB;
+  border-radius: 5px;
+  padding: 1rem;
+  font-style: italic;
+  outline: none;
+  width: 100%;
+}
+#service-item .container .left .online-support-box input:focus {
+  border: 1px solid #DABA93;
+}
+@media (min-width: 768px) {
+  #service-item .container .left {
+    transition-duration: 0.5s;
+    min-width: 180px;
+  }
+}
+@media (min-width: 1400px) {
+  #service-item .container .left {
+    transition-duration: 0.5s;
+    min-width: 348px;
+  }
+}
+#service-item .container .right img {
+  max-width: 100%;
+  height: auto;
+}
+@media (min-width: 768px) {
+  #service-item .container .right {
+    transition-duration: 0.5s;
+    padding-left: 3rem;
+    max-width: 100%;
+    border-left: 1px solid #EAEAEA;
+  }
+}
+@media (min-width: 1400px) {
+  #service-item .container .right {
+    transition-duration: 0.5s;
+    padding-left: 3rem;
+    max-width: 100%;
+    border-left: 1px solid #EAEAEA;
+  }
+}

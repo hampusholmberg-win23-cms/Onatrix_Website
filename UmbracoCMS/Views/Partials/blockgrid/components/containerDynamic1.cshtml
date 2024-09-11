@@ -25,16 +25,12 @@
     var spacingLeftClass = $"{Model.Content.Value<int>("addSpaceToLeft")}rem";
 
     //Formatting
-    var minWidth = Model.Content.Value<int>("minWidth") is var minWidthValue && minWidthValue > 0 ? $"{minWidthValue}px" : "";
     var maxWidth = Model.Content.Value<int>("maxWidth") is var maxWidthValue && maxWidthValue > 0 ? $"{maxWidthValue}px" : "";
-    var minHeight = Model.Content.Value<int>("minHeight") is var minHeightValue && minHeightValue > 0 ? $"{minHeightValue}px" : "";
-    var maxHeight = Model.Content.Value<int>("maxHeight") is var maxHeightValue && maxHeightValue > 0 ? $"{maxHeightValue}px" : "";
-
     var takeUpAllAvailableSpace = Model.Content.Value<bool>("takeUpAllAvailableSpace") ? "full-height-width" : "";
 
     //Borders
     var border = Model?.Content.Value<string>("border") ?? "";
-    
+
     border = !string.IsNullOrEmpty(border) && !string.Equals(border, "None")
         ? border switch
         {
@@ -62,13 +58,10 @@
             padding-top: @spacingTopClass;
             padding-bottom: @spacingBottomClass;
             max-width: @maxWidth;
-            min-width: @minWidth;
-            min-height: @minHeight;
-            max-height: @maxHeight;
             background-image:url(@backgroundImage);
             background-repeat: no-repeat;
             background-position: @backgroundImageHorizontalPosition @backgroundImageVerticalPosition;
-    ">
+        ">
 
         @await Html.GetBlockGridItemAreasHtmlAsync(Model)
     </div>
@@ -82,9 +75,6 @@ else
             padding-top: @spacingTopClass;
             padding-bottom: @spacingBottomClass;
             max-width: @maxWidth;
-            min-width: @minWidth;
-            min-height: @minHeight;
-            max-height: @maxHeight;
     ">
 
         @await Html.GetBlockGridItemAreasHtmlAsync(Model)

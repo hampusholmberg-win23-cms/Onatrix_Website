@@ -18,13 +18,27 @@
 
     //Disable standard image handling
     var disableStandardImageHandling = Model.Content.Value<bool>("disableStandardImageHandling");
+
+    //Formatting
+    var maxHeight = Model.Content.Value<int>("maxHeight") is int maxHeightValue && maxHeightValue != 0 
+    ? $"{maxHeightValue}px"
+    : "";
+
+
+    var maxWidth = Model.Content.Value<int>("maxWidth") is int maxWidthValue && maxWidthValue != 0
+    ? $"{maxWidthValue}px"
+    : "";
 }
 
 @if (!string.IsNullOrEmpty(selectedImage))
 {
     if (disableStandardImageHandling)
     {
-        <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion">
+        <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion"
+            style="
+                max-height: @maxHeight;
+                max-width: @maxWidth;" >
+
             <img class="@absolutePosition"
                  src="@selectedImage"
                  alt="@imageDescription"
@@ -37,7 +51,11 @@
     }
     else
     {
-        <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion">
+        <div class="image-div @hideInMobileView @hideInTabletView @hideInDesktopView @relativePostion"
+             style="
+                max-height: @maxHeight;
+                max-width: @maxWidth;">
+
             <img class="@absolutePosition"
                  src="@selectedImage"
                  alt="@imageDescription"

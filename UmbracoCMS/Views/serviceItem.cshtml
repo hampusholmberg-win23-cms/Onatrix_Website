@@ -1,5 +1,62 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ServiceItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = null;
+    Layout = "mainLayoutCshtml.cshtml";
+
+    var content = Model.Value<string>("serviceContent");
+    var serviceTitle = Model.Value<string>("serviceTitle");
+
 }
+
+<section class="sub-header-section">
+    <div class="background" style="background-image:url('/images/sub-header-bg-image.png'); background-size: cover; background-position: 10%;">
+
+        <div class="container">
+
+            <div class="content">
+                <h1>
+                    @serviceTitle
+                </h1>
+
+                <p>
+                    <a href="/">Home</a>
+                    >
+                    <a href="/services">Services</a>
+                    >
+                    <span>@serviceTitle</span>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="service-item">
+
+	<div class="container">
+
+		<div class="left">
+            <div class="about-us-box">
+                <p>About Us</p>
+                <img src="~/images/success-stories-image.png" />
+                <p>Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non </p>
+            </div>
+
+            <div class="online-support-box">
+                <p class="title">How can we help you?</p>
+                <p>Online support 24/7, we are here to help you</p>
+                <input placeholder="E-mail Address" />
+            </div>
+
+		</div>
+
+		<div class="right">
+			@Html.Raw(content)
+		</div>
+
+	</div>
+
+</section>
+
+@await Html.PartialAsync("partials/static/contactSection.cshtml")
