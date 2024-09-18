@@ -1,11 +1,17 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ProjectItem>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage 
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
     Layout = "mainLayoutCshtml.cshtml";
 
     var content = Model.Value<string>("projectContent");
     var projectTitle = Model.Value<string>("projectTitle");
+
+    var projects = Umbraco.Content(Guid.Parse("7d0e4d53-c23d-4516-bfb9-9c394050bb2d"))?
+        .ChildrenOfType("projectItem")?
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate)
+        .Take(4);
 
 }
 
@@ -22,7 +28,7 @@
                 <p>
                     <a href="/">Home</a>
                     >
-                    <a href="/services">Services</a>
+                    <a href="/projects">Projects</a>
                     >
                     <span>@projectTitle</span>
                 </p>
@@ -37,14 +43,46 @@
     <div class="container">
 
         <div class="left">
+            @{
+                var date = Model.CreateDate.ToString("MMMM dd, yyyy");
+            }
+            <p class="date">
+                <i class="fa-regular fa-calendar-days"></i> @date
+            </p>
+
             @Html.Raw(content)
         </div>
 
         <div class="right">
-            <div class="about-us-box">
-                <p>About Us</p>
-                <img src="~/images/success-stories-image.png" />
-                <p>Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non </p>
+
+            <div class="recent-projects">
+                <h5>Recent projects</h5>
+
+                @if(projects != null)
+                {
+                    foreach (var project in projects)
+                    {
+                        var recentProjectThumbnail = project.Value<IPublishedContent>("projectThumbnail")?.Url();
+                        var recentProjectTitle = project.Value<string>("projectTitle");
+                        var creationDate = project.CreateDate.ToString("MMMM dd, yyyy");
+
+
+                        <a href="@project.Url()" class="project">
+
+                            <div class="img-div">
+                                <img src="@recentProjectThumbnail" />
+
+                            </div>
+
+
+                            <p class="title">@recentProjectTitle</p>
+
+                            <p class="date"><i class="fa-regular fa-calendar-days"></i> @creationDate</p>
+
+                        </a>
+                    }
+                }
+                
             </div>
 
             <div class="online-support-box">

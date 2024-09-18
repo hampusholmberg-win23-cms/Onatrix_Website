@@ -51,32 +51,48 @@
     var hideInDesktopView = Model.Content.Value<bool>("hideInDesktopView") ? "hidden-desktop" : "";
     var hideInTabletView = Model.Content.Value<bool>("hideInTabletView") ? "hidden-tablet" : "";
     var hideInMobileView = Model.Content.Value<bool>("hideInMobileView") ? "hidden-mobile" : "";
+
+    //positioning
+    var absolutePosition = Model.Content.Value<bool>("absolutePosition") ? "absolute-position" : "";
+    var relativePostion = absolutePosition == "absolute-position" ? "relative-position" : "";
+    var rightPositioning = Model.Content.Value<int>("rightPositioning").ToString() + "%";
+    var topPositioning = Model.Content.Value<int>("topPositioning").ToString();
 }
 
-@if (backgroundImage != null)
-{
-    <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace"
+@if (absolutePosition == "absolute-position")
+{    <div class="@relativePostion"
          style="
-            padding-right: @spacingRightClass;
-            padding-left: @spacingLeftClass;
-            padding-top: @spacingTopClass;
-            padding-bottom: @spacingBottomClass;
-            max-width: @maxWidth;
-            min-width: @minWidth;
-            min-height: @minHeight;
-            max-height: @maxHeight;
-            background-image:url(@backgroundImage);
-            background-repeat: no-repeat;
-            background-position: @backgroundImageHorizontalPosition @backgroundImageVerticalPosition;
-    ">
+            display:flex;
+            align-items:center;
+            justify-content: center;">
 
-        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+        <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace @absolutePosition"
+             style="
+                padding-right: @spacingRightClass;
+                padding-left: @spacingLeftClass;
+                padding-top: @spacingTopClass;
+                padding-bottom: @spacingBottomClass;
+                max-width: @maxWidth;
+                min-width: @minWidth;
+                min-height: @minHeight;
+                max-height: @maxHeight;
+                top: @topPositioning;
+                right: @rightPositioning;
+        @(backgroundImage != null
+            ? $@"
+                background-image: url('{backgroundImage}');
+                background-repeat: no-repeat;
+                background-position: {backgroundImageHorizontalPosition} {backgroundImageVerticalPosition};"
+            : "")">
+            @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+
+        </div>
     </div>
 }
 else
 {
-    <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace"
-         style="
+<div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace"
+        style="
             padding-right: @spacingRightClass;
             padding-left: @spacingLeftClass;
             padding-top: @spacingTopClass;
@@ -85,8 +101,13 @@ else
             min-width: @minWidth;
             min-height: @minHeight;
             max-height: @maxHeight;
-    ">
-
-        @await Html.GetBlockGridItemAreasHtmlAsync(Model)
-    </div>
+    @(backgroundImage != null
+        ? $@"
+            background-image: url('{backgroundImage}');
+            background-repeat: no-repeat;
+            background-position: {backgroundImageHorizontalPosition} {backgroundImageVerticalPosition};"
+        : "")">
+    @await Html.GetBlockGridItemAreasHtmlAsync(Model)
+</div>
 }
+

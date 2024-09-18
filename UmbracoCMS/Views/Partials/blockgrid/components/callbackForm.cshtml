@@ -1,0 +1,63 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoCMS.Models
+
+@{
+    var Request = new CallbackFormModel();
+}
+
+@using (Html.BeginUmbracoForm("HandleSubmit", "CallbackSurface", FormMethod.Post))
+{
+    <div class="callback-form">
+
+        <div class="callback-form-header">
+            <h3 class="sub-color-1"> Request a call back </h3>
+        </div>
+
+        <div class="callback-form-body">
+
+            @if (TempData["success"] != null)
+            {
+                <p class="callback-form-description">
+                    @TempData["success"]
+                </p>
+            }
+            else
+            {
+                <p class="callback-form-description"> Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat </p>
+            }
+
+            <div class="input-group">
+                <input name="name" placeholder="Name" value="@ViewData["name"]" />
+                <span class="error-flag">@ViewData["name_error"]</span>
+            </div>
+
+            <div class="input-group">
+                <input name="email" placeholder="Email Address" value="@ViewData["email"]" />
+                <span class="error-flag">@ViewData["email_error"]</span>
+
+            </div>
+
+            <div class="input-group">
+                <input name="phone" placeholder="Phone" value="@ViewData["phone"]" />
+                <span class="error-flag">@ViewData["phone_error"]</span>
+
+            </div>
+
+            <div class="input-group">
+
+                <select name="inquiry">
+
+                    <option value=""> Select an option </option>
+                    <option value="option 1"> option 1 </option>
+                    <option value="option 2"> option 2 </option>
+
+                </select>
+
+            </div>
+
+            <button class="btn-secondary" type="submit">Submit</button>
+        </div>
+    </div>
+}

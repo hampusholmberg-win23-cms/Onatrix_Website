@@ -1,0 +1,48 @@
+.callback-form {
+    @include shadow-l;
+    background-color: $white;
+    min-width: 340px;
+    min-height: 572px;
+    
+
+    @include desktop {
+        width: 470px;
+    }
+
+    .callback-form-header {
+        @include flex-center-center;
+        height: 20%;
+
+        @include tablet {
+            @include flex-start-center;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        padding: 1px 2rem;
+        background-color: $main-color;
+    }
+
+    .callback-form-body {
+        padding: 1rem 2rem;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        input {
+            @include input-standard;
+            width: 100%;
+        }
+
+        select {
+            @include select-standard;
+            width: 100%;
+        }
+
+        p {
+        }
+    }
+}

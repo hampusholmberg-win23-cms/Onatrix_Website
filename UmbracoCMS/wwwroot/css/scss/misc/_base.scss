@@ -31,3 +31,8 @@ body {
 .hidden {
     display: none !important;
 }
+
+.error-flag {
+    font-size: 16px;
+    color: $danger;
+}
