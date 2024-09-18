@@ -20,7 +20,6 @@ public class EmailService
     {
         try
         {
-            //message = "{\r\n    \"to\": \"hampusholmberg@live.com\",\r\n    \"subject\": \"Testing 1234\",\r\n    \"htmlBody\": \"hej hej\",\r\n    \"plainText\": \"hej hej\"\r\n}";
             var payload = new ServiceBusMessage(message);
 
             if (payload != null)
