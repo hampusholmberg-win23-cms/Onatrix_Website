@@ -5,7 +5,11 @@
 
 @{
     var paragraphContent = Model.Content.Value<string>("paragraphContent");
+
+    //Formatting/spacing
     var textAlign = Model.Content.Value<string>("textAlign");
+    var marginTop = Model.Content.Value<int>("marginTop") is var mtVal && mtVal != 0 ? $"{mtVal}px" : "14px";
+    var marginBottom = Model.Content.Value<int>("marginBottom") is var mbVal && mbVal != 0 ? $"{mbVal}px" : "14px";
 
     //Max width
     var maxWidthValue = Model.Content.Value<int>("maxWidth");
@@ -26,18 +30,9 @@
     //Font style
     var fontStyle = Model.Content.Value<string>("fontStyle");
 
-    //Font weight
-    // var fontWeight = Model.Content.Value<int>("fontWeight");
-
-    // if(fontWeight == 0)
-    // {
-    //     fontWeight = 400;
-    // }
-
     //Colors
     var textColorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("textColor")?.Label.ToLower() ?? null;
     var textColorClass = !string.IsNullOrEmpty(textColorLabel) ? $"text-{textColorLabel}" : "";
-
 }
 
 @if (!string.IsNullOrEmpty(paragraphContent))
@@ -48,8 +43,9 @@
             max-width: @maxWidth;
             font-size: @fontSize;
             font-style: @fontStyle;
+            margin-top: @marginTop;
+            margin-bottom: @marginBottom;
             ">
-        @* font-weight: @fontWeight; *@
 
         @paragraphContent
     </p> 

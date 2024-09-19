@@ -1239,23 +1239,64 @@ footer .footer-div .container span {
 .contact-form .contact-form-header h6 {
   margin: 0;
   text-align: center;
+  font-size: 14px;
+}
+@media (min-width: 1400px) {
+  .contact-form .contact-form-header h6 {
+    transition-duration: 0.5s;
+    font-size: 18px;
+  }
 }
 .contact-form .contact-form-header h2 {
   margin: 0;
   max-width: 475px;
   text-align: center;
+  font-size: 26px;
+}
+@media (min-width: 768px) {
+  .contact-form .contact-form-header h2 {
+    transition-duration: 0.5s;
+    font-size: 36px;
+  }
+}
+@media (min-width: 1400px) {
+  .contact-form .contact-form-header h2 {
+    transition-duration: 0.5s;
+    font-size: 40px;
+  }
+}
+.contact-form .contact-form-header p {
+  max-width: 500px;
 }
 .contact-form .contact-form-body {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  width: 100%;
 }
 .contact-form .contact-form-body .contact-form-description {
   max-width: 475px;
 }
 .contact-form .contact-form-body .inputs {
+  transition: 0.25s;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .contact-form .contact-form-body .inputs {
+    transition-duration: 0.5s;
+    transition: 0.25s;
+    width: 510px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 1400px) {
+  .contact-form .contact-form-body .inputs {
+    transition-duration: 0.5s;
+    transition: 0.25s;
+    width: 1020px;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 .contact-form .contact-form-body .inputs .input-group input {
   width: 100%;
