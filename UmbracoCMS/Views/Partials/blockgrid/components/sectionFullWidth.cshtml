@@ -39,6 +39,8 @@
 
     //positioning
     var centerContentClass = (Model.Content.Value<bool>("centerContentOnPage")) ? "center" : "";
+    var topContentClass = (Model.Content.Value<bool>("topContent")) ? "top-container" : "";
+    var bottomContentClass = (Model.Content.Value<bool>("bottomContent")) ? "bottom-container" : "";
 
     var spacingTopValue = Model.Content.Value<int>("addSpaceToTop");
     var spacingTopClass = spacingTopValue.ToString() + "rem";
@@ -61,7 +63,7 @@
 
 <section 
     id="@sectionId"
-         class="  @centerContentClass @sectionBackgroundColorClass @hideInTabletView @hideInMobileView @hideInDesktopView"
+         class="  @centerContentClass @topContentClass @bottomContentClass @sectionBackgroundColorClass @hideInTabletView @hideInMobileView @hideInDesktopView"
             style="
             padding-right: @spacingRightClass; 
             padding-left: @spacingLeftClass;
@@ -71,8 +73,7 @@
 
     @if (sectionBackgroundImage != null)
     {
-    <div 
-        class="background-div "
+    <div class="background-div @centerContentClass @topContentClass @bottomContentClass "
             style="                
                 background-image:url(@sectionBackgroundImage);
                 max-width: @sectionBackgroundImageMaxWidth; 

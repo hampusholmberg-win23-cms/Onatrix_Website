@@ -19,6 +19,14 @@
     flex-direction: column;
 }
 
+.top-container {
+    @include flex-center-start;
+}
+
+.bottom-container {
+    @include flex-center-end;
+}
+
 .relative-position {
     position: relative;
     overflow: visible !important;

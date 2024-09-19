@@ -1,0 +1,69 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoCMS.Models
+
+@{
+    var Request = new CallbackFormModel();
+}
+
+@using (Html.BeginUmbracoForm("HandleSubmit", "CallbackSurface", FormMethod.Post))
+{
+    <div class="contact-form">
+
+        <div class="contact-form-header">
+            <h6 class="sub-color-3"> REQUEST A CALL BACK </h6>
+            <h2> Let us know about your next project </h2>
+        </div>
+
+        <div class="contact-form-body">
+
+            @if (TempData["success"] != null)
+            {
+                <p class="contact-form-description">
+                    @TempData["success"]
+                </p>
+            }
+            else
+            {
+                <p class="contact-form-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas consectetur, ligula semper sagittis lobortis, eros metus efficitur purus </p>
+            }
+
+            <div class="inputs">
+
+                <div class="input-group">
+                    <input name="name" placeholder="Name" value="@ViewData["name"]" />
+                    <span class="error-flag">@ViewData["name_error"]</span>
+                </div>
+
+                <div class="input-group">
+                    <input name="email" placeholder="Email Address" value="@ViewData["email"]" />
+                    <span class="error-flag">@ViewData["email_error"]</span>
+
+                </div>
+
+                <div class="input-group">
+                    <input name="phone" placeholder="Phone" value="@ViewData["phone"]" />
+                    <span class="error-flag">@ViewData["phone_error"]</span>
+
+                </div>
+
+                <div class="input-group">
+
+                    <select name="inquiry">
+
+                        <option value=""> Select an option </option>
+                        <option value="option 1"> option 1 </option>
+                        <option value="option 2"> option 2 </option>
+
+                    </select>
+
+                </div>
+            </div>
+
+        </div>
+
+        <button class="btn-primary" type="submit">Submit</button>
+
+    </div>
+}

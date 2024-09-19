@@ -11,13 +11,17 @@
     .container {
         transition-duration: .5s;
         max-width: 540px;
+        padding-right: 0;
+        padding-left: 0;
     }
   }
   
   @media (min-width: 768px) {
     .container {
         transition-duration: .5s;
-      max-width: 720px;
+        max-width: 720px;
+        padding-right: 0;
+        padding-left: 0;
     }
   }
   
@@ -37,5 +41,7 @@
     .container {
         transition-duration: .5s;
         max-width: 1320px;
+        padding-right: 0;
+        padding-left: 0;
     }
   }
