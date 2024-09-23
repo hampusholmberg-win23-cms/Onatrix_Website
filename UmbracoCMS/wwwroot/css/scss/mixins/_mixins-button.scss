@@ -11,3 +11,11 @@
         transition-duration: .25s !important;
     }
 }
+
+@mixin tag-btn {
+    border-radius: 99px;
+    padding: .7rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 13px;
+}

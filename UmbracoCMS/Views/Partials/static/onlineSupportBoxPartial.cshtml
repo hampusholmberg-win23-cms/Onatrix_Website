@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+}
+
+@using (Html.BeginUmbracoForm("HandleSubmit", "CallbackSurface", FormMethod.Post))
+{
+    <div class="online-support-box">
+        <p class="title">How can we help you?</p>
+        <p>Online support 24/7, we are here to help you</p>
+        <input name="email" placeholder="Email Address" />
+        <span>@TempData["online_support_box_success"]</span>
+    </div>
+}

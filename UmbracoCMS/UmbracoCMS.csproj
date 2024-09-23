@@ -6,10 +6,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\css\scss\static-sections\_projects-grid.scss" />
     <Content Remove="wwwroot\css\scss\static-sections\_service-item.scss" />
   </ItemGroup>
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\css\scss\static-sections\_projects-grid.scss" />
     <None Include="wwwroot\css\scss\static-sections\_service-item.scss" />
   </ItemGroup>
 

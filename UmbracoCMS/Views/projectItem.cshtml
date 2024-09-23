@@ -5,6 +5,7 @@
     Layout = "mainLayoutCshtml.cshtml";
 
     var content = Model.Value<string>("projectContent");
+    var projectTags = Model.Value<IEnumerable<string>>("tags");
     var projectTitle = Model.Value<string>("projectTitle");
 
     var projects = Umbraco.Content(Guid.Parse("7d0e4d53-c23d-4516-bfb9-9c394050bb2d"))?
@@ -51,6 +52,16 @@
             </p>
 
             @Html.Raw(content)
+
+            <div class="tags">
+                <span>Tags:</span>
+
+                @foreach (var tag in projectTags)
+                {
+                    <a class="project-tag-secondary" href="/projects?tag=@(tag)">@tag</a>
+                }
+
+            </div>
         </div>
 
         <div class="right">
@@ -66,7 +77,6 @@
                         var recentProjectTitle = project.Value<string>("projectTitle");
                         var creationDate = project.CreateDate.ToString("MMMM dd, yyyy");
 
-
                         <a href="@project.Url()" class="project">
 
                             <div class="img-div">
@@ -74,22 +84,16 @@
 
                             </div>
 
-
                             <p class="title">@recentProjectTitle</p>
 
                             <p class="date"><i class="fa-regular fa-calendar-days"></i> @creationDate</p>
-
                         </a>
                     }
                 }
                 
             </div>
 
-            <div class="online-support-box">
-                <p class="title">How can we help you?</p>
-                <p>Online support 24/7, we are here to help you</p>
-                <input placeholder="E-mail Address" />
-            </div>
+            @await Html.PartialAsync("partials/static/onlineSupportBoxPartial.cshtml")
 
         </div>
 

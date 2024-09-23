@@ -13,6 +13,17 @@ a {
     }
 }
 
+.project-tag-primary {
+    @include tag-btn;
+    border: 1px solid $border-gray;
+}
+
+.project-tag-secondary {
+    @include tag-btn;
+    border: 1px solid $sub-color-1;
+    background-color: $sub-color-1;
+}
+
 .navlink {
     transition-duration: .25s;
     text-decoration: none;

@@ -7,79 +7,125 @@
     var pageSize = Model.Content.Value<int>("pageSize") == 0 ? 4 : Model.Content.Value<int>("pageSize");
     int currentPage = 1;
 
+    var projects = Umbraco.Content(Guid.Parse("7d0e4d53-c23d-4516-bfb9-9c394050bb2d"))?
+         .ChildrenOfType("projectItem")?
+         .Where(x => x.IsVisible())
+         .OrderByDescending(x => x.CreateDate)
+         .ToList();
+
     if (int.TryParse(Context.Request.Query["page"], out int parsedPage))
     {
         currentPage = parsedPage;
     }
 
-    var projects = Umbraco.Content(Guid.Parse("7d0e4d53-c23d-4516-bfb9-9c394050bb2d"))?
-         .ChildrenOfType("projectItem")?
-         .Where(x => x.IsVisible())
-         .OrderByDescending(x => x.CreateDate);
+    var tagFilter = Context.Request.Query["tag"].ToString();
+
+    if (!string.IsNullOrEmpty(tagFilter))
+    {
+        projects = projects.Where(x => x.Value<IEnumerable<string>>("tags")?
+            .Contains(tagFilter) == true)
+            .ToList();
+    }
+
+    var tags = new List<string>();
+
+    if(projects != null)
+    {
+        foreach (var project in projects)
+        {
+            var projectTags = project.Value<IEnumerable<string>>("tags");
+            if (projectTags != null!)
+                tags.AddRange(projectTags);
+        }
+    }
 
     var projectsSelection = projects?.Skip((currentPage - 1) * pageSize).Take(pageSize);
     int totalNumberOfPages = (int)Math.Ceiling((double)projects.Count() / pageSize);
 }
 
-    <div class="projects-grid">
+<div class="projects">
 
-    @if (projectsSelection != null)
-        {
-        foreach (var project in projectsSelection)
+    <div class="left">
+        <div class="projects-grid">
+
+            @if (projectsSelection != null)
             {
-                var projectThumbnail = project.Value<IPublishedContent>("projectThumbnail")?.Url();
-                var projectTitle = project.Value<string>("projectTitle");
-                var projectDescription = project.Value<string>("projectDescription");
-                var creationDate = project.CreateDate.ToString("MMMM dd, yyyy");
+                foreach (var project in projectsSelection)
+                {
+                    var projectThumbnail = project.Value<IPublishedContent>("projectThumbnail")?.Url();
+                    var projectTitle = project.Value<string>("projectTitle");
+                    var projectDescription = project.Value<string>("projectDescription");
+                    var creationDate = project.CreateDate.ToString("MMMM dd, yyyy");
 
-                <a href="@project.Url()" class="project">
+                    <a href="@project.Url()" class="project">
 
-                <div class="img-div">
-                    <img src="@projectThumbnail" />
+                        <div class="img-div">
+                            <img src="@projectThumbnail" />
+                        </div>
 
-                </div>
+                        <div class="content">
 
-                <div class="content">
+                            <p class="title">@projectTitle</p>
+                            <p class="date"><i class="fa-regular fa-calendar-days"></i> @creationDate</p>
+                            <p class="date">@projectDescription</p>
+                            <p class="read-more">Read more <i class="fa-solid fa-chevron-right"></i></p>
 
-                    <p class="title">@projectTitle</p>
+                        </div>
 
-                    <p class="date"><i class="fa-regular fa-calendar-days"></i> @creationDate</p>
-                    <p class="date">@projectDescription</p>
-                    <p class="read-more">Read more <i class="fa-solid fa-chevron-right"></i></p>
-
-
-                </div>
-
-
-
-                </a>
+                    </a>
+                }
             }
-        }
 
+        </div>
+
+        <div class="@pagination">
+
+            @if (currentPage > 1)
+            {
+                <a href="?page=@(currentPage - 1)">Prev</a>
+            }
+
+            @for (int i = 1; i <= totalNumberOfPages; i++)
+            {
+                if (i == currentPage)
+                {
+                    <a class="active a-number" href="?page=@(i)">@i</a>
+                }
+                else
+                {
+                    <a class="a-number" href="?page=@(i)">@i</a>
+                }
+            }
+
+            @if (currentPage < totalNumberOfPages)
+            {
+                <a href="?page=@(currentPage + 1)">Next</a>
+            }
+
+        </div>
     </div>
 
-<div class="@pagination">
+    <div class="right">
+        <div class="tags">
+            <h5>Tags</h5>
 
-    @if (currentPage > 1)
-    {
-        <a href="?page=@(currentPage - 1)">Prev</a>
-    }
+            @foreach (var tag in tags)
+            {
+                if (tagFilter == tag)
+                {
+                    <a class="project-tag-primary active" href="?tag=">@tag</a>
+                }
+                else
+                {
+                    <a class="project-tag-primary" href="?tag=@(tag)">@tag</a>
+                }
+            }
+        </div>
 
-    @for (int i = 1; i <= totalNumberOfPages; i++)
-    {
-        if (i == currentPage)
-        {
-            <a class="active a-number" href="?page=@(i)">@i</a>
-        }
-        else
-        {
-            <a class="a-number" href="?page=@(i)">@i</a>
-        }
-    }
-
-    @if (currentPage < totalNumberOfPages)
-    {
-        <a href="?page=@(currentPage + 1)">Next</a>
-    }
-
+        <div class="online-support-box">
+            <p class="title">How can we help you?</p>
+            <p>Online support 24/7, we are here to help you</p>
+            <input placeholder="E-mail Address" />
+        </div>
+    </div>
 </div>
