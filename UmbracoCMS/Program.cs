@@ -3,6 +3,11 @@ using UmbracoCMS.Services;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Configuration.AddUserSecrets<Program>();
+}
+
 //Email-provider
 builder.Services.AddScoped<EmailService>(provider =>
 {
@@ -10,7 +15,7 @@ builder.Services.AddScoped<EmailService>(provider =>
     var connectionString = configuration["ServiceBus:ConnectionString"];
     var queueName = configuration["ServiceBus:QueueName"];
 
-    return new EmailService(connectionString, queueName);
+    return new EmailService(connectionString!, queueName!);
 });
 // ----- //
 
