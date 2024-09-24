@@ -1,0 +1,29 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoCMS.Models
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+	var rootContent = UmbracoHelper.ContentAtRoot();
+	var partnerLogotypes = rootContent.FirstOrDefault(x => x.ContentType.Alias == "partnerLogotypes");
+	var logotypes = new List<IPublishedContent>();
+
+	if (partnerLogotypes != null)
+	{
+		var mediaPickerValue = partnerLogotypes.Value<IEnumerable<IPublishedContent>>("Logotypes");
+
+		if (mediaPickerValue != null)
+		{
+			logotypes.AddRange(mediaPickerValue);
+		}
+	}
+}
+
+<div class="partner-logotypes">
+
+	@foreach (var logotype in logotypes)
+	{
+		<img src="@logotype.Url()" />
+	}
+</div>

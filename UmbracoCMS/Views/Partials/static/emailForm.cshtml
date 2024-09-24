@@ -1,0 +1,36 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@inject Umbraco.Cms.Web.Common.UmbracoHelper UmbracoHelper
+
+@{
+}
+
+<section id="service-email-form">
+    <div class="container">
+        @using (Html.BeginUmbracoForm("HandleSubmit", "EmailFormSurface", FormMethod.Post))
+        {
+            <p class="title">Have a question?</p>
+
+            <div class="email-form">
+
+                <div class="input-group">
+                    <input name="name" placeholder="Name" />
+                </div>
+
+                <div class="input-group">
+                    <input name="email" placeholder="Email Address" />
+                </div>
+
+                <div class="input-group">
+                    <textarea name="message" placeholder="Question"></textarea>
+                </div>
+
+                <span>@TempData["email_form_success"]</span>
+
+            </div>
+
+            <button class="btn-primary" type="submit">Submit</button>
+        }
+    </div>
+</section>
+

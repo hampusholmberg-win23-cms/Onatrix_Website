@@ -6,6 +6,8 @@
     var pagination = Model.Content.Value<bool>("pagination") ? "pagination" : "hidden";
     var pageSize = Model.Content.Value<int>("pageSize") == 0 ? 4 : Model.Content.Value<int>("pageSize");
     int currentPage = 1;
+    bool showAllTags = Context.Request.Query["showAllTags"].ToString() == "true";
+
 
     var projects = Umbraco.Content(Guid.Parse("7d0e4d53-c23d-4516-bfb9-9c394050bb2d"))?
          .ChildrenOfType("projectItem")?
@@ -20,23 +22,34 @@
 
     var tagFilter = Context.Request.Query["tag"].ToString();
 
+    var tags = new List<string>();
+
+    if (projects != null)
+    {
+        foreach (var project in projects)
+        {
+            var projectTags = project.Value<IEnumerable<string>>("tags");
+            if (projectTags != null)
+            {
+                tags.AddRange(projectTags);
+                tags = tags.Distinct().ToList();
+            }
+
+            tags.Sort();
+
+            if (tags.Count >= 12 && !showAllTags)
+            {
+                tags = tags.Take(12).ToList();
+                break;
+            }
+        }
+    }
+
     if (!string.IsNullOrEmpty(tagFilter))
     {
         projects = projects.Where(x => x.Value<IEnumerable<string>>("tags")?
             .Contains(tagFilter) == true)
             .ToList();
-    }
-
-    var tags = new List<string>();
-
-    if(projects != null)
-    {
-        foreach (var project in projects)
-        {
-            var projectTags = project.Value<IEnumerable<string>>("tags");
-            if (projectTags != null!)
-                tags.AddRange(projectTags);
-        }
     }
 
     var projectsSelection = projects?.Skip((currentPage - 1) * pageSize).Take(pageSize);
@@ -122,10 +135,26 @@
             }
         </div>
 
-        <div class="online-support-box">
-            <p class="title">How can we help you?</p>
-            <p>Online support 24/7, we are here to help you</p>
-            <input placeholder="E-mail Address" />
+        <div class="show-tags">
+            @if (!showAllTags)
+            {
+                <a href="?showAllTags=true" class="show-tags-btn">Show All Tags</a>
+            }
+            else
+            {
+                <a href="?showAllTags=false" class="show-tags-btn">Show Fewer Tags</a>
+            }
         </div>
+
+        @using (Html.BeginUmbracoForm("HandleSubmit", "OnlineSupportBoxSurface", FormMethod.Post))
+        {
+            <div class="online-support-box">
+                <p class="title">How can we help you?</p>
+                <p>Online support 24/7, we are here to help you</p>
+                <input name="email" placeholder="Email Address" />
+                <span>@TempData["online_support_box_success"]</span>
+            </div>
+        }
+
     </div>
 </div>

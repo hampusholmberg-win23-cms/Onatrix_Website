@@ -1351,7 +1351,7 @@ footer .footer-div .container span {
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 @media (min-width: 768px) {
   .projects .right {
@@ -1365,6 +1365,10 @@ footer .footer-div .container span {
     transition-duration: 0.5s;
     width: 30%;
   }
+}
+.projects .right .show-tags {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 .projects .right .online-support-box {
   padding: 1rem;
@@ -1399,5 +1403,68 @@ footer .footer-div .container span {
   width: 100%;
 }
 .projects .right .online-support-box input:focus {
+  border: 1px solid #DABA93;
+}
+
+.partner-logotypes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 160px;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+.partner-logotypes img {
+  height: 100%;
+  width: auto;
+}
+
+#service-email-form form {
+  width: 100%;
+}
+
+.email-form {
+  width: 100%;
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .email-form {
+    transition-duration: 0.5s;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "name email" "message message";
+    column-gap: 2rem;
+  }
+  .email-form .input-group:nth-child(1) {
+    grid-area: name;
+  }
+  .email-form .input-group:nth-child(2) {
+    grid-area: email;
+  }
+  .email-form .input-group:nth-child(3) {
+    grid-area: message;
+  }
+}
+.email-form input {
+  border: 1px solid #EBEBEB;
+  border-radius: 5px;
+  padding: 1rem;
+  font-style: italic;
+  outline: none;
+  width: 100%;
+}
+.email-form input:focus {
+  border: 1px solid #DABA93;
+}
+.email-form textarea {
+  border: 1px solid #EBEBEB;
+  border-radius: 5px;
+  padding: 1rem;
+  font-style: italic;
+  outline: none;
+  width: 100%;
+  height: 175px;
+}
+.email-form textarea:focus {
   border: 1px solid #DABA93;
 }

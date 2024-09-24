@@ -1,0 +1,11 @@
+.partner-logotypes {
+    @include flex-center-center;
+    min-height: 160px;
+    gap: 5rem;
+    flex-wrap: wrap;
+
+    img {
+        height: 100%;
+        width: auto;
+    }    
+}
