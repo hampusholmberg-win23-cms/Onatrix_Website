@@ -14,6 +14,17 @@
     var rightPositioning = Model.Content.Value<int>("rightPositioning").ToString() + "%";
     var topPositioning = Model.Content.Value<int>("topPositioning").ToString();
 
+    //flex
+    var jcSpaceBetween = Model.Content.Value<string>("justifyContent");
+
+    jcSpaceBetween = !string.IsNullOrEmpty(jcSpaceBetween) && !string.Equals(jcSpaceBetween, "None")
+        ? jcSpaceBetween switch
+        {
+            "Space Between" => "flex-space-between",
+            _ => ""
+        } 
+        : "";
+
     //BG color
     var backgroundColorLabel = Model?.Content?.Value<ColorPickerValueConverter.PickedColor>("backgroundColor")?.Label.ToLower() ?? null;
     var backgroundColorClass = (!string.IsNullOrEmpty(backgroundColorLabel) && backgroundColorLabel != "none") ? $"bg-{backgroundColorLabel}" : "";
@@ -21,12 +32,12 @@
 
 @if (absolutePosition == "absolute-position")
 {
-    <div class="@relativePostion"
+    <div class="@relativePostion "
          style="
         display:flex;
         align-items:center;
         justify-content: center;">
-        <div class="container @centerContentClass @topContentClass @bottomContentClass @absolutePosition @backgroundColorClass"
+        <div class="container @jcSpaceBetween @centerContentClass @topContentClass @bottomContentClass @absolutePosition @backgroundColorClass"
              style="
             top: @topPositioning;">
 
@@ -36,7 +47,7 @@
 }
 else
 {
-    <div class="container @centerContentClass @topContentClass @bottomContentClass @backgroundColorClass">
+    <div class="container @centerContentClass @topContentClass @bottomContentClass @backgroundColorClass @jcSpaceBetween">
         @await Html.GetBlockGridItemAreasHtmlAsync(Model)
     </div>
 }

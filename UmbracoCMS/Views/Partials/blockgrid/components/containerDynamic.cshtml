@@ -57,6 +57,17 @@
     var relativePostion = absolutePosition == "absolute-position" ? "relative-position" : "";
     var rightPositioning = Model.Content.Value<int>("rightPositioning").ToString() + "%";
     var topPositioning = Model.Content.Value<int>("topPositioning").ToString();
+
+    //flex
+    var jcSpaceBetween = Model.Content.Value<string>("justifyContent");
+
+    jcSpaceBetween = !string.IsNullOrEmpty(jcSpaceBetween) && !string.Equals(jcSpaceBetween, "None")
+        ? jcSpaceBetween switch
+        {
+            "Space Between" => "flex-space-between",
+            _ => ""
+        }
+        : "";
 }
 
 @if (absolutePosition == "absolute-position")
@@ -66,7 +77,7 @@
             align-items:center;
             justify-content: center;">
 
-        <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace @absolutePosition"
+        <div class="@jcSpaceBetween @alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace @absolutePosition"
              style="
                 padding-right: @spacingRightClass;
                 padding-left: @spacingLeftClass;
@@ -91,7 +102,7 @@
 }
 else
 {
-<div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace"
+    <div class="@alignment @center @hideInTabletView @hideInMobileView @hideInDesktopView @border @takeUpAllAvailableSpace @jcSpaceBetween"
         style="
             padding-right: @spacingRightClass;
             padding-left: @spacingLeftClass;

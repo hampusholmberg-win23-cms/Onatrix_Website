@@ -32,9 +32,16 @@
     overflow: visible !important;
     z-index: 1;
 }
+
 .absolute-position {
     position: absolute;
     z-index: 10;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
 }
 
 .hidden-tablet {
