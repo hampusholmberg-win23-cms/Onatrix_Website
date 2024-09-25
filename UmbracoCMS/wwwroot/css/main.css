@@ -753,8 +753,14 @@ footer .footer-div .container span {
 }
 
 .sub-header-section {
-  height: 245px;
+  height: 300px;
   background-color: #f7f7f7;
+}
+@media (min-width: 768px) {
+  .sub-header-section {
+    transition-duration: 0.5s;
+    height: 245px;
+  }
 }
 .sub-header-section .background {
   height: 100%;
@@ -1019,6 +1025,7 @@ footer .footer-div .container span {
   #project-item .container .right .recent-projects .project .img-div {
     transition-duration: 0.5s;
     height: 86px;
+    width: 100%;
   }
 }
 @media (min-width: 1400px) {
@@ -1028,7 +1035,8 @@ footer .footer-div .container span {
 }
 #project-item .container .right .recent-projects .project .img-div img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 #project-item .container .right .recent-projects .project .title {
   grid-area: title;
