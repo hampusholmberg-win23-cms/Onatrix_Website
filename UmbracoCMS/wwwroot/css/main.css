@@ -1341,6 +1341,14 @@ footer .footer-div .container span {
 .projects .left .projects-grid .project .content {
   display: flex;
   flex-direction: column;
+  padding: 0 1rem 0 1rem;
+}
+@media (min-width: 1400px) {
+  .projects .left .projects-grid .project .content {
+    transition-duration: 0.5s;
+    padding-right: 1rem;
+    padding-right: 1rem;
+  }
 }
 .projects .left .projects-grid .project .content .title {
   grid-area: title;
@@ -1458,9 +1466,18 @@ footer .footer-div .container span {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 160px;
-  gap: 5rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  column-gap: 5rem;
+  row-gap: 2.5rem;
   flex-wrap: wrap;
+}
+@media (min-width: 1400px) {
+  .partner-logotypes {
+    transition-duration: 0.5s;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
 }
 .partner-logotypes img {
   height: 100%;

@@ -55,6 +55,13 @@
                 .content {
                     display: flex;
                     flex-direction: column;
+                    padding: 0 1rem 0 1rem;
+
+
+                    @include desktop {
+                        padding-right: 1rem;
+                        padding-right: 1rem;
+                    }
 
                     .title {
                         grid-area: title;
@@ -78,7 +85,7 @@
 
                     .read-more {
                         font-weight: 600;
-                        
+
                         i {
                             color: $sub-color-3;
                             margin-left: .5rem;
